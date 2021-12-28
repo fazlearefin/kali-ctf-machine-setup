@@ -9,6 +9,7 @@
           - seclists
           - linux-exploit-suggester
           - mat2
+          - sshuttle
 
     - block:
         - name: install tor and proxychains
