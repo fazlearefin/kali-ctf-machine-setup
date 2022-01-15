@@ -10,6 +10,7 @@
           - linux-exploit-suggester
           - mat2
           - sshuttle
+          - bettercap
 
     - block:
         - name: install tor and proxychains
