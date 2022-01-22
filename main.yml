@@ -12,6 +12,12 @@
           - sshuttle
           - bettercap
 
+    - name: install some useful pip packages
+      pip:
+        name:
+          - one-lin3r
+        executable: pip3
+
     - block:
         - name: install tor and proxychains
           apt:
