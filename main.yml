@@ -11,6 +11,7 @@
           - mat2
           - sshuttle
           - bettercap
+          - sslstrip
 
     - name: install some useful pip packages
       pip:
