@@ -13,11 +13,17 @@
           - bettercap
           - sslstrip
 
-    - name: install some useful pip packages
-      pip:
-        name:
-          - one-lin3r
-        executable: pip3
+    - block:
+        - name: install python3-pip package
+          apt:
+            pkg:
+              python3-pip
+
+        - name: install some useful pip packages
+          pip:
+            name:
+              - one-lin3r
+            executable: pip3
 
     - block:
         - name: install tor and proxychains
