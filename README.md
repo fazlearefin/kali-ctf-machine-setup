@@ -23,5 +23,11 @@ cd kali-pentest-machine-setup
 Enter the password for the user (`kali`) when asked for a password
 
 ```zsh
-ansible-playbook -vv -i hosts -K main.yml
+ansible-playbook -vv -i hosts -e "local_username=$(id -un)" -K main.yml
 ```
+
+---
+
+## Kali Linux Metapackages
+
+[List of metapackages](https://www.kali.org/docs/general-use/metapackages/)
