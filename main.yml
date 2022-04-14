@@ -2,9 +2,12 @@
 
 - hosts: localhost
 
+  vars:
+    local_username: kali
+
   tasks:
     - name: install some recommended additional packages
-      apt:
+      ansible.builtin.apt:
         pkg:
           - seclists
           - linux-exploit-suggester
@@ -12,28 +15,40 @@
           - sshuttle
           - bettercap
           - sslstrip
+          - tree
+
+    - block:
+        - name: Install tldr package
+          ansible.builtin.apt:
+            pkg:
+              - tldr
+
+        - name: Clone tldr doc file repo
+          ansible.builtin.command: tldr --update
+          become: yes
+          become_user: "{{ local_user }}"
 
     - block:
         - name: install python3-pip package
-          apt:
+          ansible.builtin.apt:
             pkg:
               python3-pip
 
         - name: install some useful pip packages
-          pip:
+          ansible.builtin.pip:
             name:
               - one-lin3r
             executable: pip3
 
     - block:
         - name: install tor and proxychains
-          apt:
+          ansible.builtin.apt:
             pkg:
               - tor
               - proxychains4
 
         - name: copy torrc file
-          copy:
+          ansible.builtin.copy:
             src: etc/tor/torrc
             dest: /etc/tor/torrc
             owner: root
@@ -42,13 +57,13 @@
             backup: yes
 
         - name: ensure tor service runs on system startup
-          service:
+          ansible.builtin.systemd:
             name: tor
             state: started
             enabled: yes
 
         - name: copy proxychains4 config file
-          copy:
+          ansible.builtin.copy:
             src: etc/proxychains4.conf
             dest: /etc/proxychains4.conf
             owner: root
