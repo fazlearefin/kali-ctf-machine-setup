@@ -70,3 +70,19 @@
             group: root
             mode: '0644'
             backup: yes
+
+    - block:
+        - name: install packages needed for tmux with powerline
+          ansible.builtin.apt:
+            pkg:
+              - tmux
+              - powerline
+              - python3-powerline
+              - xclip
+
+        - name: copy sample .tmux.conf file to the user's homedir
+          ansible.builtin.copy:
+            src: home/user/.tmux.conf
+            dest: "~{{ local_user }}/.tmux.conf"
+          become: yes
+          become_user: "{{ local_user }}"
