@@ -16,6 +16,7 @@
           - bettercap
           - sslstrip
           - tree
+          - parallel
 
     - block:
         - name: Install tldr package
