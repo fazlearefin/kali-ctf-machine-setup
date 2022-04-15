@@ -26,7 +26,7 @@
         - name: Clone tldr doc file repo
           ansible.builtin.command: tldr --update
           become: yes
-          become_user: "{{ local_user }}"
+          become_user: "{{ local_username }}"
 
     - block:
         - name: install python3-pip package
@@ -83,6 +83,6 @@
         - name: copy sample .tmux.conf file to the user's homedir
           ansible.builtin.copy:
             src: home/user/.tmux.conf
-            dest: "~{{ local_user }}/.tmux.conf"
+            dest: "~{{ local_username }}/.tmux.conf"
           become: yes
-          become_user: "{{ local_user }}"
+          become_user: "{{ local_username }}"
