@@ -24,6 +24,13 @@
             pkg:
               - tldr
 
+        - name: create parent directories required for tldr doc files
+          ansible.builtin.file:
+            path: "{{ local_username  }}/.local/share"
+            state: directory
+          become: yes
+          become_user: "{{ local_username }}"
+
         - name: Clone tldr doc file repo
           ansible.builtin.command: tldr --update
           become: yes
