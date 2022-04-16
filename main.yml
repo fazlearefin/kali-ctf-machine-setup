@@ -17,6 +17,7 @@
           - sslstrip
           - tree
           - parallel
+          - meld
 
     - block:
         - name: Install tldr package
