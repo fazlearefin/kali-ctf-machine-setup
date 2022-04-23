@@ -24,6 +24,7 @@
           - tree
           - parallel
           - meld
+          - gobuster
 
     - block:
         - name: Install tldr package
