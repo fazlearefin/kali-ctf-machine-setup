@@ -6,6 +6,12 @@
     local_username: kali
 
   tasks:
+    - name: tune system swappiness
+      ansible.posix.sysctl:
+        name: vm.swappiness
+        value: '0'
+        state: present
+
     - name: install some recommended additional packages
       ansible.builtin.apt:
         pkg:
