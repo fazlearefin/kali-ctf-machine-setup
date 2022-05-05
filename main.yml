@@ -51,14 +51,15 @@
 
         - name: create parent directories required for tldr doc files
           ansible.builtin.file:
-            path: "~{{ local_username  }}/.local/share"
+            path: "~{{ local_username  }}/.local/share/tldr"
             state: directory
-          become: yes
+            mode: '0775'
+          become: true
           become_user: "{{ local_username }}"
 
         - name: Clone tldr doc file repo
           ansible.builtin.command: tldr --update
-          become: yes
+          become: true
           become_user: "{{ local_username }}"
 
     - block:
@@ -87,13 +88,13 @@
             owner: root
             group: root
             mode: '0644'
-            backup: yes
+            backup: true
 
         - name: ensure tor service runs on system startup
           ansible.builtin.systemd:
             name: tor
             state: started
-            enabled: yes
+            enabled: true
 
         - name: copy proxychains4 config file
           ansible.builtin.copy:
@@ -102,7 +103,7 @@
             owner: root
             group: root
             mode: '0644'
-            backup: yes
+            backup: true
 
     - block:
         - name: install packages needed for tmux with powerline
@@ -117,5 +118,6 @@
           ansible.builtin.copy:
             src: home/user/.tmux.conf
             dest: "~{{ local_username }}/.tmux.conf"
-          become: yes
+            mode: '0644'
+          become: true
           become_user: "{{ local_username }}"
