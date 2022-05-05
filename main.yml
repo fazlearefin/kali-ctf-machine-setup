@@ -31,10 +31,12 @@
         - name: Gather the package facts
           ansible.builtin.package_facts:
             manager: auto
+          no_log: true
 
         - name: Print the package facts
           ansible.builtin.debug:
             var: ansible_facts.packages
+          no_log: true
 
         - name: Create symlink to seclists from wordlists dir
           ansible.builtin.file:
