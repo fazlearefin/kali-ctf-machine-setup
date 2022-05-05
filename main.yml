@@ -25,6 +25,7 @@
           - parallel
           - meld
           - gobuster
+          - chromium
 
     - block:
         - name: Install tldr package
