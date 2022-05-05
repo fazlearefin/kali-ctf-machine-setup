@@ -16,6 +16,7 @@
       ansible.builtin.apt:
         pkg:
           - seclists
+          - payloadsallthethings
           - linux-exploit-suggester
           - mat2
           - sshuttle
