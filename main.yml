@@ -39,7 +39,7 @@
         - name: Create symlink to seclists from wordlists dir
           ansible.builtin.file:
             src: /usr/share/seclists
-            dest: /usr/share/wordlists
+            dest: /usr/share/wordlists/seclists
             state: link
           when: "'seclists' in ansible_facts.packages"
 
