@@ -32,6 +32,7 @@
           - meld
           - gobuster
           - chromium
+          - nishang
 
     - block:
         - name: Gather the package facts
