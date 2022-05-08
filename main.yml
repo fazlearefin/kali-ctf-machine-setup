@@ -33,6 +33,7 @@
           - gobuster
           - chromium
           - nishang
+          - 2to3
 
     - block:
         - name: Gather the package facts
