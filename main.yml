@@ -131,3 +131,9 @@
             mode: '0644'
           become: true
           become_user: "{{ local_username }}"
+
+    - name: add kali user to kali-trusted group for passwordless sudo
+      ansible.builtin.user:
+        name: kali
+        groups: kali-trusted
+        append: yes
