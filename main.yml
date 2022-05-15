@@ -137,3 +137,17 @@
         name: kali
         groups: kali-trusted
         append: yes
+
+    - block:
+        - name: install nmapAutomator script
+          ansible.builtin.git:
+            repo: 'https://github.com/21y4d/nmapAutomator.git'
+            dest: /opt/nmapAutomator
+            clone: yes
+            version: master
+
+        - name: make nmapAutomator available in /usr/local/bin/
+          ansible.builtin.file:
+            src: /opt/nmapAutomator/nmapAutomator.sh
+            dest: /usr/local/bin/nmapAutomator.sh
+            state: link
