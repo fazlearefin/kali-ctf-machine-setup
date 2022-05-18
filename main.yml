@@ -34,6 +34,7 @@
           - chromium
           - nishang
           - 2to3
+          - rlwrap
 
     - block:
         - name: Gather the package facts
