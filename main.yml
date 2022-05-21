@@ -35,6 +35,7 @@
           - nishang
           - 2to3
           - rlwrap
+          - bat
 
     - block:
         - name: Gather the package facts
