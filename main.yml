@@ -152,3 +152,43 @@
             src: /opt/nmapAutomator/nmapAutomator.sh
             dest: /usr/local/bin/nmapAutomator.sh
             state: link
+
+    - block:
+        - name: create base dir for privesc scripts
+          ansible.builtin.file:
+            path: /opt/privesc-scripts
+            state: directory
+
+        - name: create symlink from /usr/share
+          ansible.builtin.file:
+            src: /opt/privesc-scripts
+            dest: /usr/share/privesc-scripts
+            state: link
+
+        - name: git clone PEASS-ng
+          ansible.builtin.git:
+            repo: 'https://github.com/carlospolop/PEASS-ng.git'
+            dest: /opt/privesc-scripts/PEASS-ng
+            clone: yes
+            version: master
+
+        - name: git clone LinEnum
+          ansible.builtin.git:
+            repo: 'https://github.com/rebootuser/LinEnum.git'
+            dest: /opt/privesc-scripts/LinEnum
+            clone: yes
+            version: master
+
+        - name: git clone linux-smart-enumeration
+          ansible.builtin.git:
+            repo: 'https://github.com/diego-treitos/linux-smart-enumeration'
+            dest: /opt/privesc-scripts/linux-smart-enumeration
+            clone: yes
+            version: master
+
+        - name: git clone linux-exploit-suggester
+          ansible.builtin.git:
+            repo: 'https://github.com/mzet-/linux-exploit-suggester.git'
+            dest: /opt/privesc-scripts/linux-exploit-suggester
+            clone: yes
+            version: master
