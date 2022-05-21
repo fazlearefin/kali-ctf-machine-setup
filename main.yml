@@ -14,7 +14,7 @@
 
     - name: perform a dist upgrade
       ansible.builtin.apt:
-        update_cache: yes
+        update_cache: true
         upgrade: dist
 
     - name: install some recommended additional packages
@@ -137,14 +137,14 @@
       ansible.builtin.user:
         name: kali
         groups: kali-trusted
-        append: yes
+        append: true
 
     - block:
         - name: install nmapAutomator script
           ansible.builtin.git:
             repo: 'https://github.com/21y4d/nmapAutomator.git'
             dest: /opt/nmapAutomator
-            clone: yes
+            clone: true
             version: master
 
         - name: make nmapAutomator available in /usr/local/bin/
@@ -169,26 +169,26 @@
           ansible.builtin.git:
             repo: 'https://github.com/carlospolop/PEASS-ng.git'
             dest: /opt/privesc-scripts/PEASS-ng
-            clone: yes
+            clone: true
             version: master
 
         - name: git clone LinEnum
           ansible.builtin.git:
             repo: 'https://github.com/rebootuser/LinEnum.git'
             dest: /opt/privesc-scripts/LinEnum
-            clone: yes
+            clone: true
             version: master
 
         - name: git clone linux-smart-enumeration
           ansible.builtin.git:
             repo: 'https://github.com/diego-treitos/linux-smart-enumeration'
             dest: /opt/privesc-scripts/linux-smart-enumeration
-            clone: yes
+            clone: true
             version: master
 
         - name: git clone linux-exploit-suggester
           ansible.builtin.git:
             repo: 'https://github.com/mzet-/linux-exploit-suggester.git'
             dest: /opt/privesc-scripts/linux-exploit-suggester
-            clone: yes
+            clone: true
             version: master
