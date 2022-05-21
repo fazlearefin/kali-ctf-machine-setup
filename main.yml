@@ -158,6 +158,7 @@
           ansible.builtin.file:
             path: /opt/privesc-scripts
             state: directory
+            mode: '0775'
 
         - name: create symlink from /usr/share
           ansible.builtin.file:
