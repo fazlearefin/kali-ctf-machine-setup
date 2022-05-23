@@ -56,25 +56,6 @@
           when: "'seclists' in ansible_facts.packages"
 
     - block:
-        - name: Install tldr package
-          ansible.builtin.apt:
-            pkg:
-              - tldr
-
-        - name: create parent directories required for tldr doc files
-          ansible.builtin.file:
-            path: "~{{ local_username  }}/.local/share/tldr"
-            state: directory
-            mode: '0775'
-          become: true
-          become_user: "{{ local_username }}"
-
-        - name: Clone tldr doc file repo
-          ansible.builtin.command: tldr --update
-          become: true
-          become_user: "{{ local_username }}"
-
-    - block:
         - name: install python3-pip package
           ansible.builtin.apt:
             pkg:
@@ -84,6 +65,7 @@
           ansible.builtin.pip:
             name:
               - one-lin3r
+              - tldr
             executable: pip3
 
     - block:
