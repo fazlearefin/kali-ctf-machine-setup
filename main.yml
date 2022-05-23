@@ -36,6 +36,7 @@
           - 2to3
           - rlwrap
           - bat
+          - burpsuite
 
     - block:
         - name: Gather the package facts
