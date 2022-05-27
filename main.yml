@@ -37,6 +37,8 @@
           - rlwrap
           - bat
           - burpsuite
+          - hashrat
+          - name-that-hash
 
     - block:
         - name: Gather the package facts
