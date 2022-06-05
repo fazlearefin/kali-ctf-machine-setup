@@ -39,6 +39,7 @@
           - burpsuite
           - hashrat
           - name-that-hash
+          - feroxbuster
 
     - block:
         - name: Gather the package facts
