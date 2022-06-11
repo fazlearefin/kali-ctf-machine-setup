@@ -194,6 +194,7 @@
             append: true
             groups:
               - docker
+              - python3-docker
 
         - name: pull some vulnerable docker images
           community.docker.docker_image:
