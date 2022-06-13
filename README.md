@@ -28,6 +28,8 @@ ansible-playbook -vv -i hosts -e "local_username=$(id -un)" -K main.yml
 
 ---
 
-## Kali Linux Metapackages
+## Kali Linux Useful Links
 
-[List of metapackages](https://www.kali.org/docs/general-use/metapackages/)
+- [Kali Linux Metapackages](https://www.kali.org/docs/general-use/metapackages/)
+- [Kali Tools](https://www.kali.org/tools/)
+- [Kali's Default Credentials](https://www.kali.org/docs/introduction/default-credentials/)
