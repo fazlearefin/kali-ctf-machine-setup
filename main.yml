@@ -187,6 +187,7 @@
           ansible.builtin.apt:
             pkg:
               - docker.io
+              - python3-docker
 
         - name: make local user able to run docker commands
           ansible.builtin.user:
@@ -194,7 +195,6 @@
             append: true
             groups:
               - docker
-              - python3-docker
 
         - name: pull some vulnerable docker images
           community.docker.docker_image:
