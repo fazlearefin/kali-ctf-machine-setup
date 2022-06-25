@@ -1,6 +1,6 @@
-# kali-pentest-machine-setup
+# kali-ctf-machine-setup
 
-This repo contains Ansible playbooks to install extra tools on top of Kali Linux.
+This repo contains Ansible playbooks to install extra tools on top of Kali Linux for CTF activities.
 
 ## Howto?
 
