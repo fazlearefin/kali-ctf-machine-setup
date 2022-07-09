@@ -183,6 +183,13 @@
             clone: true
             version: master
 
+        - name: git clone GitTools
+          ansible.builtin.git:
+            repo: 'https://github.com/internetwache/GitTools.git'
+            dest: /opt/GitTools
+            clone: true
+            version: master
+
     - block:
         - name: install docker packages
           ansible.builtin.apt:
