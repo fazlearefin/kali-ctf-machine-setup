@@ -40,6 +40,7 @@
           - hashrat
           - name-that-hash
           - feroxbuster
+          - tig
           - kali-tools-top10    # metapackage https://www.kali.org/tools/kali-meta/#kali-tools-top10
 
     - block:
