@@ -4,6 +4,7 @@
 
   vars:
     local_username: kali
+    setup_vuln_docker_images: false
 
   tasks:
     - name: tune system swappiness
@@ -212,3 +213,4 @@
             - webgoat/goatandwolf      # docker run --rm -p 127.0.0.1:8080:8080 -p 127.0.0.1:9090:9090 -e TZ=UTC webgoat/goatandwolf
             - bkimminich/juice-shop    # docker run --rm -p 127.0.0.1:3000:3000 bkimminich/juice-shop
             - vulnerables/web-dvwa     # docker run --rm -it -p 127.0.0.1:80:80 vulnerables/web-dvwa
+      when: setup_vuln_docker_images

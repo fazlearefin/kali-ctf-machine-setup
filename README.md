@@ -23,7 +23,11 @@ cd kali-pentest-machine-setup
 Enter the password for the user (`kali`) when asked for a password
 
 ```zsh
-ansible-playbook -vv -i hosts -e "local_username=$(id -un)" -K main.yml
+# install WITHOUT docker vulnerable images
+ansible-playbook -vv -i hosts -e "{ setup_vuln_docker_images: false }" -e "local_username=$(id -un)" -K main.yml
+
+# install WITH docker vulnerable images
+ansible-playbook -vv -i hosts -e "{ setup_vuln_docker_images: true }" -e "local_username=$(id -un)" -K main.yml
 ```
 
 ---
