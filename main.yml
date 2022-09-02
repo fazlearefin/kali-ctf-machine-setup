@@ -42,6 +42,8 @@
           - name-that-hash
           - feroxbuster
           - tig
+          - python3-cachecontrol
+          - python3-poetry
           - exa
           - pcre2-utils         # provides pcre2grep and pcre2test (perl-compatible regex)
           - kali-tools-top10    # metapackage https://www.kali.org/tools/kali-meta/#kali-tools-top10
