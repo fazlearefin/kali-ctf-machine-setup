@@ -3,7 +3,7 @@
 - hosts: localhost
 
   vars:
-    local_username: kali
+    local_username: "{{ local_username }}"
     setup_vuln_docker_images: false
 
   tasks:
@@ -127,9 +127,9 @@
           become: true
           become_user: "{{ local_username }}"
 
-    - name: add kali user to kali-trusted group for passwordless sudo
+    - name: "add {{ local_username }} user to kali-trusted group for passwordless sudo"
       ansible.builtin.user:
-        name: kali
+        name: "{{ local_username }}"
         groups: kali-trusted
         append: true
 
