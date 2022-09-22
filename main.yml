@@ -79,6 +79,11 @@
               - tldr
             executable: pip3
 
+    - name: get offline copy of all tldr pages
+      ansible.builtin.shell: tldr --update
+      become: true
+      become_user: "{{ local_username }}"
+
     - block:
         - name: install tor and proxychains
           ansible.builtin.apt:
