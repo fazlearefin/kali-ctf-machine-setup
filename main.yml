@@ -229,4 +229,4 @@
         - name: cleanup apt packages and repodata
           ansible.builtin.apt:
             autoremove: true
-            clean: true
+            autoclean: true
