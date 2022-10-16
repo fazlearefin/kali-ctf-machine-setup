@@ -37,3 +37,11 @@ ansible-playbook -vv -i hosts -e "{ setup_vuln_docker_images: true }" -e "local_
 - [Kali Linux Metapackages](https://www.kali.org/docs/general-use/metapackages/)
 - [Kali Tools](https://www.kali.org/tools/)
 - [Kali's Default Credentials](https://www.kali.org/docs/introduction/default-credentials/)
+
+## Other Useful Links
+
+- [GTFOBins](https://gtfobins.github.io/)
+- [HackTricks](https://book.hacktricks.xyz/)
+- [CyberChef](https://gchq.github.io/CyberChef/) - Encode/decode data
+- [CrackStation](https://crackstation.net/) - Hash Rainbow List
+- [Reverse Shell Generator](https://www.revshells.com/)
