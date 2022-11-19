@@ -2,6 +2,8 @@
 
 This repo contains Ansible playbooks to install extra tools on top of Kali Linux for CTF activities.
 
+These tools are useful when playing CTF in platforms such as [Hack The Box](https://www.hackthebox.com/), [TryHackMe](https://tryhackme.com/), etc.
+
 ## Howto?
 
 01. Install git and ansible
@@ -29,6 +31,10 @@ ansible-playbook -vv -i hosts -e "{ setup_vuln_docker_images: false }" -e "local
 # install WITH docker vulnerable images
 ansible-playbook -vv -i hosts -e "{ setup_vuln_docker_images: true }" -e "local_username=$(id -un)" -K main.yml
 ```
+*Docker vulnerable images* are docker containers to running deliverately vulnerable services. These include
+- [OWASP Juice Shop](https://owasp.org/www-project-juice-shop/)
+- [OWASP WebGoat](https://owasp.org/www-project-webgoat/)
+- [Damn Vulnerable Web Application (DVWA)](https://github.com/digininja/DVWA)
 
 ---
 
