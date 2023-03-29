@@ -44,6 +44,7 @@
           - tig
           - python3-cachecontrol
           - python3-poetry
+          - python3-pip
           - exa
           - pcre2-utils         # provides pcre2grep and pcre2test (perl-compatible regex)
           - kali-tools-top10    # metapackage https://www.kali.org/tools/kali-meta/#kali-tools-top10
@@ -65,19 +66,6 @@
             dest: /usr/share/wordlists/seclists
             state: link
           when: "'seclists' in ansible_facts.packages"
-
-    - block:
-        - name: install python3-pip package
-          ansible.builtin.apt:
-            pkg:
-              python3-pip
-
-        - name: install some useful pip packages
-          ansible.builtin.pip:
-            name:
-              - one-lin3r
-              - tldr
-            executable: pip3
 
     - name: get offline copy of all tldr pages
       ansible.builtin.shell: tldr --update
