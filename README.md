@@ -48,6 +48,8 @@ ansible-playbook -vv -i hosts -e "{ setup_vuln_docker_images: true }" -e "local_
 
 - [GTFOBins](https://gtfobins.github.io/)
 - [HackTricks](https://book.hacktricks.xyz/)
+- [HackTricks Cloud](https://cloud.hacktricks.xyz/)
 - [CyberChef](https://gchq.github.io/CyberChef/) - Encode/decode data
 - [CrackStation](https://crackstation.net/) - Hash Rainbow List
 - [Reverse Shell Generator](https://www.revshells.com/)
+- [CI/CD Goat](https://github.com/cider-security-research/cicd-goat)
