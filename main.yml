@@ -26,6 +26,7 @@
           - linux-exploit-suggester
           - mat2
           - sshuttle
+          - chisel
           - bettercap
           - sslstrip
           - tree
