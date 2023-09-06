@@ -42,7 +42,7 @@
           - hashrat
           - name-that-hash
           - feroxbuster
-          - tealdeer
+          - tldr-hs
           - tig
           - python3-cachecontrol
           - python3-poetry
