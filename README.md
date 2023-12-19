@@ -40,8 +40,8 @@ ansible-playbook -vv -i hosts -e "{ setup_vuln_docker_images: true }" -e "local_
 
 ## Kali Linux Useful Links
 
-- [Kali Linux Metapackages](https://www.kali.org/docs/general-use/metapackages/)
 - [Kali Tools](https://www.kali.org/tools/)
+- [Kali Linux Metapackages](https://www.kali.org/tools/kali-meta/)
 - [Kali's Default Credentials](https://www.kali.org/docs/introduction/default-credentials/)
 
 ## Other Useful Links
