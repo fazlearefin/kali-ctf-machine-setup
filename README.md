@@ -6,21 +6,26 @@ These tools are useful when playing CTF in platforms such as [Hack The Box](http
 
 ## Howto?
 
-01. Install git and ansible
+### 0. Kali Linux Installation
+
+It is assummed that you have a plain vanilla installation of Kali Linux. This README is tailored for [Kali virtual machine images](https://www.kali.org/get-kali/#kali-virtual-machines)
+
+
+### 1.   Install git and ansible
 
 ```zsh
 sudo apt update
 sudo apt install git ansible -y
 ```
 
-02. Clone this repo
+### 2. Clone this repo
 
 ```zsh
 git clone https://github.com/fazlearefin/kali-pentest-machine-setup.git
 cd kali-pentest-machine-setup
 ```
 
-03. Run the ansible playbook to install the extra tools
+### 3. Run the ansible playbook to install the extra tools
 
 Enter the password for the user (`kali`) when asked for a password
 
@@ -31,10 +36,28 @@ ansible-playbook -vv -i hosts -e "{ setup_vuln_docker_images: false }" -e "local
 # install WITH docker vulnerable images
 ansible-playbook -vv -i hosts -e "{ setup_vuln_docker_images: true }" -e "local_username=$(id -un)" -K main.yml
 ```
-*Docker vulnerable images* are docker containers to running deliverately vulnerable services. These include
+
+---
+
+## Bundled docker vulnerable images
+
+*Docker vulnerable images* are docker containers to running deliverately vulnerable services. The following vulnerable images are installed so that you can practice within your own Kali installation:
+
 - [OWASP Juice Shop](https://owasp.org/www-project-juice-shop/)
 - [OWASP WebGoat](https://owasp.org/www-project-webgoat/)
-- [Damn Vulnerable Web Application (DVWA)](https://github.com/digininja/DVWA)
+
+### Running the vulnerable docker images
+
+```zsh
+# OWASP Juice Shop
+docker run --rm -d -p 3000:3000 --name juice-shop bkimminich/juice-shop
+# use web browser to go to http://localhost:3000 in Kali host
+
+# OWASP WebGoat
+docker run --rm -it -p 127.0.0.1:8080:8080 -p 127.0.0.1:9090:9090 -e TZ=UTC --name webgoat webgoat/webgoat
+# use web browsser to go to http://127.0.0.1:8080/WebGoat in Kali host
+
+```
 
 ---
 
