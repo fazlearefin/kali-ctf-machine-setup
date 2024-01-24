@@ -128,20 +128,6 @@
         append: true
 
     - block:
-        - name: install nmapAutomator script
-          ansible.builtin.git:
-            repo: 'https://github.com/21y4d/nmapAutomator.git'
-            dest: /opt/nmapAutomator
-            clone: true
-            version: master
-
-        - name: make nmapAutomator available in /usr/local/bin/
-          ansible.builtin.file:
-            src: /opt/nmapAutomator/nmapAutomator.sh
-            dest: /usr/local/bin/nmapAutomator.sh
-            state: link
-
-    - block:
         - name: create base dir for privesc scripts
           ansible.builtin.file:
             path: /opt/privesc-scripts
