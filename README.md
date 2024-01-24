@@ -10,22 +10,30 @@ These tools are useful when playing CTF in platforms such as [Hack The Box](http
 
 It is assummed that you have a plain vanilla installation of Kali Linux. This README is tailored for [Kali virtual machine images](https://www.kali.org/get-kali/#kali-virtual-machines)
 
+### 1. Upgrade packages
 
-### 1.   Install git and ansible
+This step is optional as the ansible playbook takes care of this. But it is highly recommended you upgrade all the installed packges at this stage to avoid issues later.
+
+```zsh
+sudo apt update
+sudo apt full-upgrade -y
+```
+
+### 2.   Install git and ansible
 
 ```zsh
 sudo apt update
 sudo apt install git ansible -y
 ```
 
-### 2. Clone this repo
+### 3. Clone this repo
 
 ```zsh
 git clone https://github.com/fazlearefin/kali-pentest-machine-setup.git
 cd kali-pentest-machine-setup
 ```
 
-### 3. Run the ansible playbook to install the extra tools
+### 4. Run the ansible playbook to install the extra tools
 
 Enter the password for the user (`kali`) when asked for a password
 
