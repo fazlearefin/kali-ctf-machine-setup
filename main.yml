@@ -208,10 +208,19 @@
             name: "{{ item }}"
             source: pull
           loop:
-            - webgoat/goatandwolf      # docker run --rm -p 127.0.0.1:8080:8080 -p 127.0.0.1:9090:9090 -e TZ=UTC webgoat/goatandwolf
-            - bkimminich/juice-shop    # docker run --rm -p 127.0.0.1:3000:3000 bkimminich/juice-shop
-            - vulnerables/web-dvwa     # docker run --rm -it -p 127.0.0.1:80:80 vulnerables/web-dvwa
+            - webgoat/webgoat          # docker run --rm -it -p 127.0.0.1:8080:8080 -p 127.0.0.1:9090:9090 -e TZ=UTC --name webgoat webgoat/webgoat
+            - bkimminich/juice-shop    # docker run --rm -d -p 3000:3000 --name juice-shop bkimminich/juice-shop
       when: setup_vuln_docker_images
+
+    - block:
+        - name: Install DVWA package
+          ansible.builtin.apt:
+            pkg:
+              - dvwa
+        # start the service using sudo systemctl start dvwa
+        # navigate to http://localhost:42001
+        # default creds are admin/password
+        # Security Level can be changed in /etc/dvwa/config/config.inc.php
 
     - name: Final cleanup
       block:
