@@ -16,7 +16,7 @@
     - name: perform a dist upgrade
       ansible.builtin.apt:
         update_cache: true
-        upgrade: dist
+        upgrade: full
 
     - name: install some recommended additional packages
       ansible.builtin.apt:
