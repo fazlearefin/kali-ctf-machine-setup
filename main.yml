@@ -151,6 +151,13 @@
 
         - name: refresh fonts cache
           ansible.builtin.shell: "fc-cache -fv"
+
+        - name: set default font to a nerd font in qterminal
+          ansible.builtin.lineinfile:
+            path: "~{{local_username}}/.config/qterminal.org/qterminal.ini"
+            regexp: '^fontFamily=.*'
+            line: "fontFamily={{qterminal_default_font}}"
+          ignore_errors: True  # ignore as the user might be using a different desktop environment which may not have qterminal
       become: yes
       become_user: "{{ local_username }}"
 
