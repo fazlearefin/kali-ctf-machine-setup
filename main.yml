@@ -137,6 +137,23 @@
           become: true
           become_user: "{{ local_username }}"
 
+    - block:
+        - name: create local fonts directory
+          ansible.builtin.file:
+            path: "~{{ local_username }}/.local/share/fonts"
+            state: directory
+
+        - name: download nerd fonts to local fonts folder
+          ansible.builtin.get_url:
+            url: "{{ item  }}"
+            dest: "~{{ local_username }}/.local/share/fonts/"
+          with_items: "{{ nerd_fonts }}"
+
+        - name: refresh fonts cache
+          ansible.builtin.shell: "fc-cache -fv"
+      become: yes
+      become_user: "{{ local_username }}"
+
     - name: "add {{ local_username }} user to kali-trusted group for passwordless sudo"
       ansible.builtin.user:
         name: "{{ local_username }}"
