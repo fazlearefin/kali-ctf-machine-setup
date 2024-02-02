@@ -84,3 +84,11 @@ docker run --rm -it -p 127.0.0.1:8080:8080 -p 127.0.0.1:9090:9090 -e TZ=UTC --na
 - [CrackStation](https://crackstation.net/) - Hash Rainbow List
 - [Reverse Shell Generator](https://www.revshells.com/)
 - [CI/CD Goat](https://github.com/cider-security-research/cicd-goat)
+
+---
+
+## Donations
+
+If you think my work helped you in some way saving you time and effort, I am happy to receive any amount of donation. However, the code in this repo is completely free.
+
+Bitcoin (BTC): `bc1qzlhpm94vtk2ht67etdutzcy2g5an5v6g36tp0m`
