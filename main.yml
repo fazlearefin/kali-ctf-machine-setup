@@ -113,13 +113,27 @@
           ansible.builtin.apt:
             pkg:
               - tmux
-              - xclip
+              - xsel
+
+        - name: git clone tmux plugin repo
+          ansible.builtin.git:
+            repo: 'https://github.com/tmux-plugins/tpm'
+            dest: "~{{ local_username }}/.tmux/plugins/tpm"
+            clone: true
+            version: master
+          become: true
+          become_user: "{{ local_username }}"
 
         - name: copy sample .tmux.conf file to the user's homedir
           ansible.builtin.copy:
             src: home/user/.tmux.conf
             dest: "~{{ local_username }}/.tmux.conf"
             mode: '0644'
+          become: true
+          become_user: "{{ local_username }}"
+
+        - name: install all required tmux plugins
+          ansible.builtin.shell: "~{{local_username}}/.tmux/plugins/tpm/scripts/install_plugins.sh"
           become: true
           become_user: "{{ local_username }}"
 
