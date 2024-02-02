@@ -113,7 +113,16 @@
           ansible.builtin.apt:
             pkg:
               - tmux
-              - xclip
+              - xsel
+
+        - name: git clone tmux plugin repo
+          ansible.builtin.git:
+            repo: 'https://github.com/tmux-plugins/tpm'
+            dest: "~{{ local_username }}/.tmux/plugins/tpm"
+            clone: true
+            version: master
+          become: true
+          become_user: "{{ local_username }}"
 
         - name: copy sample .tmux.conf file to the user's homedir
           ansible.builtin.copy:
@@ -122,6 +131,35 @@
             mode: '0644'
           become: true
           become_user: "{{ local_username }}"
+
+        - name: install all required tmux plugins
+          ansible.builtin.shell: "~{{local_username}}/.tmux/plugins/tpm/scripts/install_plugins.sh"
+          become: true
+          become_user: "{{ local_username }}"
+
+    - block:
+        - name: create local fonts directory
+          ansible.builtin.file:
+            path: "~{{ local_username }}/.local/share/fonts"
+            state: directory
+
+        - name: download nerd fonts to local fonts folder
+          ansible.builtin.get_url:
+            url: "{{ item  }}"
+            dest: "~{{ local_username }}/.local/share/fonts/"
+          with_items: "{{ nerd_fonts }}"
+
+        - name: refresh fonts cache
+          ansible.builtin.shell: "fc-cache -fv"
+
+        - name: set default font to a nerd font in qterminal
+          ansible.builtin.lineinfile:
+            path: "~{{local_username}}/.config/qterminal.org/qterminal.ini"
+            regexp: '^fontFamily=.*'
+            line: "fontFamily={{qterminal_default_font}}"
+          ignore_errors: True  # ignore as the user might be using a different desktop environment which may not have qterminal
+      become: yes
+      become_user: "{{ local_username }}"
 
     - name: "add {{ local_username }} user to kali-trusted group for passwordless sudo"
       ansible.builtin.user:
