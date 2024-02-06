@@ -17,4 +17,24 @@ nerd_fonts:
 
 qterminal_default_font: "FiraCodeNerdFontMono"
 
+# TODO: following are amd64 binaries; update url links if your arch is different
+projectdiscovery_tools:
+  - url: "https://github.com/projectdiscovery/naabu/releases/download/v2.2.1/naabu_2.2.1_linux_amd64.zip"
+    binaries:
+      - naabu
+  - url: "https://github.com/projectdiscovery/subfinder/releases/download/v2.6.5/subfinder_2.6.5_linux_amd64.zip"
+    binaries:
+      - subfinder
+  - url: "https://github.com/projectdiscovery/httpx/releases/download/v1.3.9/httpx_1.3.9_linux_amd64.zip"
+    binaries:
+      - httpx
+  - url: "https://github.com/projectdiscovery/proxify/releases/download/v0.0.12/proxify_0.0.12_linux_amd64.zip"
+    binaries:
+      - proxify
+      - replay
+      - mitmrelay
+  - url: "https://github.com/projectdiscovery/katana/releases/download/v1.0.5/katana_1.0.5_linux_amd64.zip"
+    binaries:
+      - katana
+
 ...

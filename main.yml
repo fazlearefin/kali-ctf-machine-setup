@@ -245,6 +245,39 @@
         # default creds are admin/password
         # Security Level can be changed in /etc/dvwa/config/config.inc.php
 
+    # download latest tools from projectdiscovery
+    - block:
+      - name: Create temporary projectdiscovery tools download directory
+        file:
+          path: /tmp/projectdiscovery
+          state: directory
+
+      - name: Download projectdiscovery tool zips
+        get_url:
+          url: "{{ item.url }}"
+          dest: "/tmp/projectdiscovery/{{ item.url | basename }}"
+        loop: "{{ projectdiscovery_tools }}"
+
+      - name: Unarchive projectdiscovery tool zips
+        unarchive:
+          src: "/tmp/projectdiscovery/{{ item.url | basename }}"
+          dest: /tmp/projectdiscovery
+          remote_src: yes
+        loop: "{{ projectdiscovery_tools }}"
+
+      - name: Copy projectdiscovery binaries to /usr/local/bin
+        copy:
+          src: "/tmp/projectdiscovery/{{ item.1 }}"
+          dest: /usr/local/bin/
+          remote_src: yes
+          mode: 0755
+        loop: "{{ projectdiscovery_tools | subelements('binaries') }}"
+
+      - name: Remove projectdiscovery temporary download directory
+        file:
+          path: /tmp/projectdiscovery
+          state: absent
+
     - name: Final cleanup
       block:
         - name: cleanup apt packages and repodata
