@@ -47,9 +47,6 @@
           - python3-cachecontrol
           - python3-poetry
           - python3-pip
-          - subfinder           # subdomain discovery tool
-          - httpx-toolkit       # multi purpose HTTP toolkit to run multiple probers; not related to httpx http python client 
-          - naabu               # alternative port scanner similar to nmap
           - foliate             # ebook reader
           - pcre2-utils         # provides pcre2grep and pcre2test (perl-compatible regex)
           - kali-tools-top10    # metapackage https://www.kali.org/tools/kali-meta/#kali-tools-top10
