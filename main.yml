@@ -245,38 +245,42 @@
         # default creds are admin/password
         # Security Level can be changed in /etc/dvwa/config/config.inc.php
 
-    # download latest tools from projectdiscovery
-    - block:
-      - name: Create temporary projectdiscovery tools download directory
-        ansible.builtin.file:
-          path: /tmp/projectdiscovery
-          state: directory
+    - name: download latest tools from projectdiscovery
+      block:
+        - name: Create temporary projectdiscovery tools download directory
+          ansible.builtin.file:
+            path: /tmp/projectdiscovery
+            state: directory
 
-      - name: Download projectdiscovery tool zips
-        ansible.builtin.get_url:
-          url: "{{ item.url }}"
-          dest: "/tmp/projectdiscovery/{{ item.url | basename }}"
-        loop: "{{ projectdiscovery_tools }}"
+        - name: Download projectdiscovery tool zips
+          ansible.builtin.get_url:
+            url: "{{ item.url }}"
+            dest: "/tmp/projectdiscovery/{{ item.url | basename }}"
+          loop: "{{ projectdiscovery_tools }}"
 
-      - name: Unarchive projectdiscovery tool zips
-        ansible.builtin.unarchive:
-          src: "/tmp/projectdiscovery/{{ item.url | basename }}"
-          dest: /tmp/projectdiscovery
-          remote_src: yes
-        loop: "{{ projectdiscovery_tools }}"
+        - name: Unarchive projectdiscovery tool zips
+          ansible.builtin.unarchive:
+            src: "/tmp/projectdiscovery/{{ item.url | basename }}"
+            dest: /tmp/projectdiscovery
+            remote_src: yes
+          loop: "{{ projectdiscovery_tools }}"
 
-      - name: Copy projectdiscovery binaries to /usr/local/bin
-        ansible.builtin.copy:
-          src: "/tmp/projectdiscovery/{{ item.1 }}"
-          dest: /usr/local/bin/
-          remote_src: yes
-          mode: 0755
-        loop: "{{ projectdiscovery_tools | subelements('binaries') }}"
+        - name: Copy projectdiscovery binaries to /usr/local/bin
+          ansible.builtin.copy:
+            src: "/tmp/projectdiscovery/{{ item.1 }}"
+            dest: /usr/local/bin/
+            remote_src: yes
+            mode: 0755
+          loop: "{{ projectdiscovery_tools | subelements('binaries') }}"
 
-      - name: Remove projectdiscovery temporary download directory
-        ansible.builtin.file:
-          path: /tmp/projectdiscovery
-          state: absent
+        - name: Remove projectdiscovery temporary download directory
+          ansible.builtin.file:
+            path: /tmp/projectdiscovery
+            state: absent
+
+        - name: Update projectdiscovery binaries
+          ansible.builtin.command: "{{ item  }} -update"
+          with_items: "{{ projectdiscovery_tools | json_query('[].binaries[]')  }}"
 
     - name: Final cleanup
       block:
