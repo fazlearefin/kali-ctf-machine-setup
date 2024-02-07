@@ -19,6 +19,9 @@ qterminal_default_font: "FiraCodeNerdFontMono"
 
 # TODO: following are amd64 binaries; update url links if your arch is different
 projectdiscovery_tools:
+  - url: "https://github.com/projectdiscovery/nuclei/releases/download/v3.1.10/nuclei_3.1.10_linux_amd64.zip"
+    binaries:
+      - nuclei
   - url: "https://github.com/projectdiscovery/naabu/releases/download/v2.2.1/naabu_2.2.1_linux_amd64.zip"
     binaries:
       - naabu
