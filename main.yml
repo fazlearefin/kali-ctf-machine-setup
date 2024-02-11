@@ -214,6 +214,14 @@
             clone: true
             version: master
 
+        - name: git clone zphisher  # An automated phishing tool with 30+ templates
+          ansible.builtin.git:
+            repo: 'https://github.com/htr-tech/zphisher.git'
+            dest: /opt/zphisher
+            clone: true
+            version: master
+            depth: 1
+
     - block:
         - name: install docker packages
           ansible.builtin.apt:
