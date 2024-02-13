@@ -222,11 +222,19 @@
             version: master
             depth: 1
 
+        - name: git clone vulhub  # Pre-Built Vulnerable Environments Based on Docker-Compose
+          ansible.builtin.git:
+            repo: 'https://github.com/vulhub/vulhub.git'
+            dest: /opt/vulhub
+            clone: true
+            version: master
+
     - block:
         - name: install docker packages
           ansible.builtin.apt:
             pkg:
               - docker.io
+              - docker-compose
               - python3-docker
 
         - name: make local user able to run docker commands
