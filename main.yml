@@ -299,6 +299,7 @@
         - name: Update projectdiscovery binaries
           ansible.builtin.command: "{{ item  }} -update"
           with_items: "{{ projectdiscovery_tools | json_query('[].binaries[]')  }}"
+          when: item not in ['simplehttpserver']
 
     - name: Final cleanup
       block:
