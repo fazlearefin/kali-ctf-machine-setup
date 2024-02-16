@@ -296,7 +296,7 @@
         - name: Remove projectdiscovery temporary download directory
           ansible.builtin.file:
             path: /tmp/projectdiscovery
-            state: absent
+            state: present
 
         - name: Update projectdiscovery binaries
           ansible.builtin.command: "{{ item  }} -update"
