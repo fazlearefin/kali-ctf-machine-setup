@@ -1,12 +1,12 @@
 # kali-ctf-machine-setup
 
-This repo contains Ansible playbooks to install extra tools on top of Kali Linux for CTF activities.
+This repo contains Ansible playbooks to install extra tools on top of Kali Linux for CTF (Capture The Flag) and pentest activities.
 
 These tools are useful when playing CTF in platforms such as [Hack The Box](https://www.hackthebox.com/), [TryHackMe](https://tryhackme.com/), etc.
 
 ## Howto?
 
-### 0. Kali Linux Installation
+### 0. Setup Kali Linux
 
 It is assummed that you have a plain vanilla installation of Kali Linux. This README is tailored for [Kali virtual machine images](https://www.kali.org/get-kali/#kali-virtual-machines)
 
@@ -29,20 +29,22 @@ sudo apt install git ansible -y
 ### 3. Clone this repo
 
 ```zsh
-git clone https://github.com/fazlearefin/kali-pentest-machine-setup.git
-cd kali-pentest-machine-setup
+git clone https://github.com/fazlearefin/kali-ctf-machine-setup.git
+cd kali-ctf-machine-setup
 ```
 
 ### 4. Run the ansible playbook to install the extra tools
 
-Enter the password for the user (`kali`) when asked for a password
+Enter the password for the user (`kali`) when asked for a password (your user ID might be different if it is a custom installation)
 
 ```zsh
 # install WITHOUT docker vulnerable images
-ansible-playbook -vv -i hosts -e "{ setup_vuln_docker_images: false }" -e "local_username=$(id -un)" -K main.yml
+ansible-playbook -vv -e "{ setup_vuln_docker_images: false }" -e "local_username=$(id -un)" -K main.yml
+
+# OR
 
 # install WITH docker vulnerable images
-ansible-playbook -vv -i hosts -e "{ setup_vuln_docker_images: true }" -e "local_username=$(id -un)" -K main.yml
+ansible-playbook -vv -e "{ setup_vuln_docker_images: true }" -e "local_username=$(id -un)" -K main.yml
 ```
 
 ---
@@ -66,6 +68,20 @@ docker run --rm -it -p 127.0.0.1:8080:8080 -p 127.0.0.1:9090:9090 -e TZ=UTC --na
 # use web browsser to go to http://127.0.0.1:8080/WebGoat in Kali host
 
 ```
+
+---
+
+## Additional Git Repos
+
+Additional git repos cloned locally at these locations:
+
+- [`/opt/GitTools`](https://github.com/internetwache/GitTools): A repository with 3 tools for pwn'ing websites with .git repositories available
+- [`/opt/zphisher`](https://github.com/htr-tech/zphisher): An automated phishing tool with 30+ templates
+- [`/opt/vulhub`](https://github.com/vulhub/vulhub): Pre-Built Vulnerable Environments Based on Docker-Compose
+- [`/opt/privesc-scripts/LinEnum`](https://github.com/rebootuser/LinEnum): Scripted Local Linux Enumeration & Privilege Escalation Checks
+- [`/opt/privesc-scripts/linux-exploit-suggester`](https://github.com/The-Z-Labs/linux-exploit-suggester): Linux privilege escalation auditing tool
+- [`/opt/privesc-scripts/linux-smart-enumeration`](https://github.com/diego-treitos/linux-smart-enumeration):  Linux enumeration tool for pentesting and CTFs with verbosity levels Topics
+- [`/opt/privesc-scripts/PEASS-ng`](https://github.com/carlospolop/PEASS-ng): PEASS - Privilege Escalation Awesome Scripts SUITE (with colors)
 
 ---
 
