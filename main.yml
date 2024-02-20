@@ -206,7 +206,7 @@
 
         - name: git clone linux-exploit-suggester
           ansible.builtin.git:
-            repo: 'https://github.com/mzet-/linux-exploit-suggester.git'
+            repo: 'https://github.com/The-Z-Labs/linux-exploit-suggester.git'
             dest: /opt/privesc-scripts/linux-exploit-suggester
             clone: true
             version: master
