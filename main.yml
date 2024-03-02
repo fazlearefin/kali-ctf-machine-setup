@@ -54,6 +54,8 @@
           - nala
           - blackbox-terminal
           - pipx
+          - btop
+          - duf
           - trufflehog
           - foliate             # ebook reader
           - pcre2-utils         # provides pcre2grep and pcre2test (perl-compatible regex)
