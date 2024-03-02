@@ -35,16 +35,20 @@ cd kali-ctf-machine-setup
 
 ### 4. Run the ansible playbook to install the extra tools
 
-Enter the password for the user (`kali`) when asked for a password (your user ID might be different if it is a custom installation)
+Enter the password for the user (`kali`) when asked for a password (your user ID might be different if it is a custom installation).
+
+Run one of the commands below depending on whether you want the vulnerable docker images to be pulled or not.
+
+#### Install WITHOUT docker vulnerable images
 
 ```zsh
-# install WITHOUT docker vulnerable images
-ansible-playbook -vv -e "{ setup_vuln_docker_images: false }" -e "local_username=$(id -un)" -K main.yml
+ansible-playbook -vv -i localhost, -e "{ setup_vuln_docker_images: false }" -e "local_username=$(id -un)" -K main.yml
+```
 
-# OR
+#### Install WITH docker vulnerable images
 
-# install WITH docker vulnerable images
-ansible-playbook -vv -e "{ setup_vuln_docker_images: true }" -e "local_username=$(id -un)" -K main.yml
+```zsh
+ansible-playbook -vv -i localhost, -e "{ setup_vuln_docker_images: true }" -e "local_username=$(id -un)" -K main.yml
 ```
 
 ---
@@ -58,15 +62,18 @@ ansible-playbook -vv -e "{ setup_vuln_docker_images: true }" -e "local_username=
 
 ### Running the vulnerable docker images
 
+#### OWASP Juice Shop
+
 ```zsh
-# OWASP Juice Shop
 docker run --rm -d -p 3000:3000 --name juice-shop bkimminich/juice-shop
 # use web browser to go to http://localhost:3000 in Kali host
+```
 
-# OWASP WebGoat
+#### OWASP WebGoat
+
+```zsh
 docker run --rm -it -p 127.0.0.1:8080:8080 -p 127.0.0.1:9090:9090 -e TZ=UTC --name webgoat webgoat/webgoat
 # use web browsser to go to http://127.0.0.1:8080/WebGoat in Kali host
-
 ```
 
 ---
