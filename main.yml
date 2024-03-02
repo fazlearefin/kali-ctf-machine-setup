@@ -57,6 +57,7 @@
           - btop
           - duf
           - trufflehog
+          - strace
           - foliate             # ebook reader
           - pcre2-utils         # provides pcre2grep and pcre2test (perl-compatible regex)
           - kali-tools-top10    # metapackage https://www.kali.org/tools/kali-meta/#kali-tools-top10
