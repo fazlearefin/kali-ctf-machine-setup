@@ -289,7 +289,7 @@
             path: /tmp/projectdiscovery
             state: absent
 
-        - name: Insall all other projectdiscovery tools
+        - name: Install all other projectdiscovery tools
           ansible.builtin.shell:
             cmd: "pdtm -i {{ item }}"
             creates: "~{{ local_username }}/.pdtm/go/bin/{{item}}"
