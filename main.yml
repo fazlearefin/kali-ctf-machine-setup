@@ -291,13 +291,13 @@
 
         - name: Install all other projectdiscovery tools
           ansible.builtin.shell:
-            cmd: "pdtm -i {{ item }}"
+            cmd: "~{{ local_username }}/.pdtm/go/bin/pdtm -i {{ item }}"
             creates: "~{{ local_username }}/.pdtm/go/bin/{{item}}"
           with_items: "{{ projectdiscovery_tools }}"
 
         - name: Update all projectdiscovery tools
           ansible.builtin.shell:
-            cmd: "pdtm -ua"
+            cmd: "~{{ local_username }}/.pdtm/go/bin/pdtm -ua"
       become: true
       become_user: "{{ local_username }}"
 
