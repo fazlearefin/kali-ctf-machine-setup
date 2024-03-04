@@ -87,8 +87,9 @@ Additional git repos cloned locally at these locations:
 - [`/opt/vulhub`](https://github.com/vulhub/vulhub): Pre-Built Vulnerable Environments Based on Docker-Compose
 - [`/opt/privesc-scripts/LinEnum`](https://github.com/rebootuser/LinEnum): Scripted Local Linux Enumeration & Privilege Escalation Checks
 - [`/opt/privesc-scripts/linux-exploit-suggester`](https://github.com/The-Z-Labs/linux-exploit-suggester): Linux privilege escalation auditing tool
-- [`/opt/privesc-scripts/linux-smart-enumeration`](https://github.com/diego-treitos/linux-smart-enumeration):  Linux enumeration tool for pentesting and CTFs with verbosity levels Topics
+- [`/opt/privesc-scripts/linux-smart-enumeration`](https://github.com/diego-treitos/linux-smart-enumeration): Linux enumeration tool for pentesting and CTFs with verbosity levels Topics
 - [`/opt/privesc-scripts/PEASS-ng`](https://github.com/carlospolop/PEASS-ng): PEASS - Privilege Escalation Awesome Scripts SUITE (with colors)
+- [`/opt/WEF`](https://github.com/D3Ext/WEF): Wi-Fi Exploitation Framework
 
 ---
 
