@@ -247,43 +247,66 @@
         # default creds are admin/password
         # Security Level can be changed in /etc/dvwa/config/config.inc.php
 
-    - name: download latest tools from projectdiscovery
+    - name: install projectdiscovery.io OSS tools
       block:
-        - name: Create temporary projectdiscovery tools download directory
+        - name: Create projectdiscovery temporary directory for extraction
           ansible.builtin.file:
             path: /tmp/projectdiscovery
             state: directory
 
-        - name: Download projectdiscovery tool zips
-          ansible.builtin.get_url:
-            url: "{{ item.url }}"
-            dest: "/tmp/projectdiscovery/{{ item.url | basename }}"
-          loop: "{{ projectdiscovery_tools }}"
+        - name: Get latest release information for pdtm
+          ansible.builtin.uri:
+            url: "{{ projectdiscovery_tool_manager_url }}"
+            return_content: yes
+          register: pdtm_latest_release
 
-        - name: Unarchive projectdiscovery tool zips
+        - name: Extract pdtm version from the latest release URL
+          set_fact:
+            pdtm_version: "{{ pdtm_latest_release.json.tag_name | regex_replace('^v', '') }}"
+
+        - name: Extract download URL for pdtm
+          set_fact:
+            pdtm_download_url: "{{ pdtm_latest_release.json.assets | selectattr('name', 'match', '^pdtm_' ~ pdtm_version ~ '_linux_amd64.zip$') | map(attribute='browser_download_url') | first }}"
+
+        - name: Download pdtm file
+          ansible.builtin.get_url:
+            url: "{{ pdtm_download_url }}"
+            dest: "/tmp/projectdiscovery/pdtm_{{ pdtm_version }}_linux_amd64.zip"
+
+        - name: Unzip pdtm file
           ansible.builtin.unarchive:
-            src: "/tmp/projectdiscovery/{{ item.url | basename }}"
+            src: "/tmp/projectdiscovery/pdtm_{{ pdtm_version }}_linux_amd64.zip"
             dest: /tmp/projectdiscovery
             remote_src: yes
-          loop: "{{ projectdiscovery_tools }}"
 
-        - name: Copy projectdiscovery binaries to /usr/local/bin
-          ansible.builtin.copy:
-            src: "/tmp/projectdiscovery/{{ item.1 }}"
-            dest: /usr/local/bin/
-            remote_src: yes
-            mode: 0755
-          loop: "{{ projectdiscovery_tools | subelements('binaries') }}"
+        - name: Execute pdtm file
+          ansible.builtin.shell:
+            cmd: "/tmp/projectdiscovery/pdtm -i pdtm"  # this will set PATH to ~/.pdtm/go/bin in ~/.zshrc and also install pdtm in ~/.pdtm/go/bin
+            creates: "~{{ local_username }}/.pdtm/go/bin/pdtm"
 
         - name: Remove projectdiscovery temporary download directory
           ansible.builtin.file:
             path: /tmp/projectdiscovery
             state: absent
 
-        - name: Update projectdiscovery binaries
-          ansible.builtin.command: "{{ item  }} -update"
-          with_items: "{{ projectdiscovery_tools | json_query('[].binaries[]')  }}"
-          when: item not in ['simplehttpserver']
+        - name: Insall all other projectdiscovery tools
+          ansible.builtin.shell:
+            cmd: "pdtm -i {{ item }}"
+            creates: "~{{ local_username }}/.pdtm/go/bin/{{item}}"
+          with_items: "{{ projectdiscovery_tools }}"
+
+        - name: Update all projectdiscovery tools
+          ansible.builtin.shell:
+            cmd: "pdtm -ua"
+      become: true
+      become_user: "{{ local_username }}"
+
+    - name: Create symlinks for tools
+      ansible.builtin.file:
+        src: "~{{ local_username }}/.pdtm/go/bin/{{ item }}"
+        dest: "/usr/local/bin/{{ item }}"
+        state: link
+      with_items: "{{ projectdiscovery_tools }}"
 
     - name: Final cleanup
       block:
