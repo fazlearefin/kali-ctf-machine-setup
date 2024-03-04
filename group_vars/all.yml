@@ -1,5 +1,52 @@
 ---
 
+system_packages:
+  - amass
+  - seclists
+  - payloadsallthethings
+  - linux-exploit-suggester
+  - mat2
+  - sshuttle
+  - chisel
+  - bettercap
+  - sslstrip
+  - tree
+  - parallel
+  - meld
+  - gobuster
+  - chromium
+  - nishang
+  - 2to3
+  - rlwrap
+  - bat
+  - burpsuite
+  - hashrat
+  - name-that-hash
+  - feroxbuster
+  - tealdeer
+  - tig
+  - python3-cachecontrol
+  - python3-poetry
+  - python3-pip
+  - ripgrep
+  - ncat
+  - testssl.sh
+  - jq
+  - nala
+  - blackbox-terminal
+  - pipx
+  - btop
+  - duf
+  - trufflehog
+  - strace
+  - python3-pwntools
+  - foliate             # ebook reader
+  - pcre2-utils         # provides pcre2grep and pcre2test (perl-compatible regex)
+  - kali-tools-top10    # metapackage https://www.kali.org/tools/kali-meta/#kali-tools-top10
+
+pipx_packages:
+  - ruff  # python linter and formatter
+
 # nerd fonts from https://github.com/ryanoasis/nerd-fonts
 nerd_fonts:
   - "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Retina/FiraCodeNerdFontMono-Retina.ttf"

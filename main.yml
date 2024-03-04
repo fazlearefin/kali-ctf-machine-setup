@@ -20,55 +20,13 @@
 
     - name: install some recommended additional packages
       ansible.builtin.apt:
-        pkg:
-          - amass
-          - seclists
-          - payloadsallthethings
-          - linux-exploit-suggester
-          - mat2
-          - sshuttle
-          - chisel
-          - bettercap
-          - sslstrip
-          - tree
-          - parallel
-          - meld
-          - gobuster
-          - chromium
-          - nishang
-          - 2to3
-          - rlwrap
-          - bat
-          - burpsuite
-          - hashrat
-          - name-that-hash
-          - feroxbuster
-          - tealdeer
-          - tig
-          - python3-cachecontrol
-          - python3-poetry
-          - python3-pip
-          - ripgrep
-          - ncat
-          - testssl.sh
-          - jq
-          - nala
-          - blackbox-terminal
-          - pipx
-          - btop
-          - duf
-          - trufflehog
-          - strace
-          - python3-pwntools
-          - foliate             # ebook reader
-          - pcre2-utils         # provides pcre2grep and pcre2test (perl-compatible regex)
-          - kali-tools-top10    # metapackage https://www.kali.org/tools/kali-meta/#kali-tools-top10
+        pkg: "{{ system_packages }}"
+        state: present
 
     - name: Install some pipx packages
       community.general.pipx:
         name: "{{ item }}"
-      with_items:
-        - ruff  # python linter and formatter
+      with_items: "{{ pipx_packages }}"
       become: true
       become_user: "{{ local_username }}"
 
