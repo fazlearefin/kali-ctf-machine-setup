@@ -250,6 +250,13 @@
             clone: true
             version: master
 
+        - name: git clone WEF (Wi-Fi Exploitation Framework)
+          ansible.builtin.git:
+            repo: 'https://github.com/D3Ext/WEF.git'
+            dest: /opt/WEF
+            clone: true
+            version: master
+
     - block:
         - name: install docker packages
           ansible.builtin.apt:
