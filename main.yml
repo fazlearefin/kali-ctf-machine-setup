@@ -62,6 +62,17 @@
           - pcre2-utils         # provides pcre2grep and pcre2test (perl-compatible regex)
           - kali-tools-top10    # metapackage https://www.kali.org/tools/kali-meta/#kali-tools-top10
 
+    - name: Set PATH for pipx binaries
+      ansible.builtin.shell: pipx ensurepath
+      become: true
+      become_user: "{{ local_username }}"
+
+    - name: Install some pipx packages
+      community.general.pipx:
+        name: "{{ item }}"
+      with_items:
+        - pwntools
+
     - block:
         - name: Gather the package facts
           ansible.builtin.package_facts:
