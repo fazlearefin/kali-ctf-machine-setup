@@ -255,7 +255,7 @@
             repo: 'https://github.com/D3Ext/WEF.git'
             dest: /opt/WEF
             clone: true
-            version: master
+            version: main
 
     - block:
         - name: install docker packages
