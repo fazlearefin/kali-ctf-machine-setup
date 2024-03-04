@@ -21,6 +21,7 @@
     - name: install some recommended additional packages
       ansible.builtin.apt:
         pkg:
+          - amass
           - seclists
           - payloadsallthethings
           - linux-exploit-suggester
