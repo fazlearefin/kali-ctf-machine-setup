@@ -101,13 +101,14 @@ Additional git repos cloned locally at these locations:
 
 ## Other Useful Links
 
+- **[HackTricks](https://book.hacktricks.xyz/)** ⭐
+- **[HackTricks Cloud](https://cloud.hacktricks.xyz/)** ⭐
 - [GTFOBins](https://gtfobins.github.io/)
-- [HackTricks](https://book.hacktricks.xyz/)
-- [HackTricks Cloud](https://cloud.hacktricks.xyz/)
 - [CyberChef](https://gchq.github.io/CyberChef/) - Encode/decode data
 - [CrackStation](https://crackstation.net/) - Hash Rainbow List
 - [Reverse Shell Generator](https://www.revshells.com/)
 - [CI/CD Goat](https://github.com/cider-security-research/cicd-goat)
+- [h4cker](https://github.com/The-Art-of-Hacking/h4cker)
 
 ---
 
