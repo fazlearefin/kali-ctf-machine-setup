@@ -134,6 +134,16 @@
             regexp: '^fontFamily=.*'
             line: "fontFamily={{qterminal_default_font}}"
           ignore_errors: True  # ignore as the user might be using a different desktop environment which may not have qterminal
+
+        - name: copy tilix config template
+          ansible.builtin.copy:
+            src: home/user/tilix.dconf
+            dest: /tmp/tilix.dconf
+            force: true
+
+        - name: import modified tilix config
+          ansible.builtin.shell: dconf load /com/gexperts/Tilix/ < /tmp/tilix.dconf
+          ignore_errors: true
       become: yes
       become_user: "{{ local_username }}"
 

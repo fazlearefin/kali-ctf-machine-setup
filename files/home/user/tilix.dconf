@@ -1,0 +1,21 @@
+[/]
+quake-specific-monitor=0
+warn-vte-config-issue=false
+
+[profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d]
+background-color='#272822'
+background-transparency-percent=0
+badge-color-set=false
+bold-color-set=false
+cursor-colors-set=false
+custom-command="/usr/bin/zsh -c \"if ! tmux ls 2>/dev/null | grep -q -E '^main.*attached'; then tmux attach -t main || tmux new -s main; else /usr/bin/zsh; fi\""
+font='SauceCodePro Nerd Font Mono 10'
+foreground-color='#F8F8F2'
+highlight-colors-set=false
+login-shell=true
+palette=['#272822', '#F92672', '#A6E22E', '#F4BF75', '#66D9EF', '#AE81FF', '#A1EFE4', '#F8F8F2', '#75715E', '#F92672', '#A6E22E', '#F4BF75', '#66D9EF', '#AE81FF', '#A1EFE4', '#F9F8F5']
+scrollback-unlimited=true
+use-custom-command=true
+use-system-font=false
+use-theme-colors=false
+visible-name='Default'
