@@ -2,10 +2,6 @@
 
 - hosts: localhost
 
-  vars:
-    local_username: "{{ local_username }}"
-    setup_vuln_docker_images: false
-
   tasks:
     - name: tune system swappiness
       ansible.posix.sysctl:

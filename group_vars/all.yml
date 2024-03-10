@@ -1,5 +1,8 @@
 ---
 
+local_username: "{{ local_username }}"
+setup_vuln_docker_images: false
+
 system_packages:
   - amass
   - seclists
