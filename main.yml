@@ -284,24 +284,24 @@
             cmd: "/tmp/projectdiscovery/pdtm -i pdtm"  # this will set PATH to ~/.pdtm/go/bin in ~/.zshrc and also install pdtm in ~/.pdtm/go/bin
             creates: "~{{ local_username }}/.pdtm/go/bin/pdtm"
 
-        - name: Remove projectdiscovery temporary download directory
+        - name: Remove projectdiscovery.io temporary download directory
           ansible.builtin.file:
             path: /tmp/projectdiscovery
             state: absent
 
-        - name: Install all other projectdiscovery tools
+        - name: Install all other projectdiscovery.io tools
           ansible.builtin.shell:
             cmd: "~{{ local_username }}/.pdtm/go/bin/pdtm -i {{ item }}"
             creates: "~{{ local_username }}/.pdtm/go/bin/{{item}}"
           with_items: "{{ projectdiscovery_tools }}"
 
-        - name: Update all projectdiscovery tools
+        - name: Update all projectdiscovery.io tools
           ansible.builtin.shell:
             cmd: "~{{ local_username }}/.pdtm/go/bin/pdtm -ua"
       become: true
       become_user: "{{ local_username }}"
 
-    - name: Create symlinks for tools
+    - name: Create symlinks for projectdiscovery.io tools
       ansible.builtin.file:
         src: "~{{ local_username }}/.pdtm/go/bin/{{ item }}"
         dest: "/usr/local/bin/{{ item }}"
