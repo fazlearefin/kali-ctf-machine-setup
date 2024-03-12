@@ -103,6 +103,8 @@ Additional git repos cloned locally at these locations:
 
 - **[HackTricks](https://book.hacktricks.xyz/)** ⭐
 - **[HackTricks Cloud](https://cloud.hacktricks.xyz/)** ⭐
+- [OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/)
+- [OWASP Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/latest/)
 - [GTFOBins](https://gtfobins.github.io/)
 - [CyberChef](https://gchq.github.io/CyberChef/) - Encode/decode data
 - [CrackStation](https://crackstation.net/) - Hash Rainbow List
