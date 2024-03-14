@@ -43,6 +43,7 @@ system_packages:
   - trufflehog
   - strace
   - python3-pwntools
+  - mitmproxy  # interactive TLS-capable intercepting HTTP proxy
   - realtek-rtl88xxau-dkms  # Realtek RTL88xxAU driver in DKMS format
   - foliate             # ebook reader
   - pcre2-utils         # provides pcre2grep and pcre2test (perl-compatible regex)
