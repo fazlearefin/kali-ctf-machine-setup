@@ -51,6 +51,7 @@ system_packages:
 
 pipx_packages:
   - ruff  # python linter and formatter
+  - chepy  # a python lib/cli equivalent of the awesome CyberChef tool
 
 # nerd fonts from https://github.com/ryanoasis/nerd-fonts
 nerd_fonts:
