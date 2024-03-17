@@ -51,6 +51,14 @@ ansible-playbook -vv -i localhost, -e "{ setup_vuln_docker_images: false }" -e "
 ansible-playbook -vv -i localhost, -e "{ setup_vuln_docker_images: true }" -e "local_username=$(id -un)" -K main.yml
 ```
 
+### 5. Further customizations (optional)
+
+Further customizations to the installation can be done by running the command below:
+
+```zsh
+kali-tweaks
+```
+
 ---
 
 ## Bundled docker vulnerable images
