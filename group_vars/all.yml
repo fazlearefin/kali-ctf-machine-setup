@@ -69,8 +69,6 @@ nerd_fonts:
   - "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Noto/Mono/NotoMonoNerdFontMono-Regular.ttf"
   - "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/Ligatures/Regular/JetBrainsMonoNerdFontMono-Regular.ttf"
 
-qterminal_default_font: "FiraCodeNerdFontMono"
-
 projectdiscovery_tools:
   - pdtm
   - nuclei
