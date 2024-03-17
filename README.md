@@ -111,6 +111,7 @@ Additional git repos cloned locally at these locations:
 - [Reverse Shell Generator](https://www.revshells.com/)
 - [CI/CD Goat](https://github.com/cider-security-research/cicd-goat)
 - [h4cker](https://github.com/The-Art-of-Hacking/h4cker)
+- [PortSwigger Web Security Academy](https://portswigger.net/web-security/all-materials)
 
 ---
 
