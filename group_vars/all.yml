@@ -47,6 +47,7 @@ system_packages:
   - realtek-rtl88xxau-dkms  # Realtek RTL88xxAU driver in DKMS format
   - foliate             # ebook reader
   - pcre2-utils         # provides pcre2grep and pcre2test (perl-compatible regex)
+  - ligolo-ng  # an advanced, yet simple, tunneling/pivoting tool that uses a TUN interface
   - kali-tools-top10    # metapackage https://www.kali.org/tools/kali-meta/#kali-tools-top10
 
 pipx_packages:
