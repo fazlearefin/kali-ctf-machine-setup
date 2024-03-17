@@ -105,6 +105,7 @@ Additional git repos cloned locally at these locations:
 - **[HackTricks Cloud](https://cloud.hacktricks.xyz/)** ⭐
 - [OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/)
 - [OWASP Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/latest/)
+- [Payloads All The Things](https://swisskyrepo.github.io/PayloadsAllTheThings/)
 - [GTFOBins](https://gtfobins.github.io/)
 - [CyberChef](https://gchq.github.io/CyberChef/) - Encode/decode data
 - [CrackStation](https://crackstation.net/) - Hash Rainbow List
