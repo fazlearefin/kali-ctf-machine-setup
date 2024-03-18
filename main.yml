@@ -307,6 +307,10 @@
         state: link
       with_items: "{{ projectdiscovery_tools }}"
 
+    - name: Set system time to UTC
+      community.general.timezone:
+        name: Etc/UTC
+
     - name: Final cleanup
       block:
         - name: cleanup apt packages and repodata
