@@ -44,6 +44,8 @@ system_packages:
   - strace
   - python3-pwntools
   - dconf-cli
+  - libpcap-dev  # package required for naabu
+  - massdns
   - cargo
   - golang-go
   - trivy  # Find vulnerabilities, misconfigurations, secrets, SBOM in containers, Kubernetes, code repositories, clouds and more
