@@ -307,6 +307,30 @@
         state: link
       with_items: "{{ projectdiscovery_tools }}"
 
+    - name: set for essential paths
+      block:
+        - name: set path for pipx
+          ansible.builtin.shell:
+            cmd: "/usr/bin/pipx ensurepath"
+
+        - name: set path for rust binaries
+          blockinfile:
+            path: "~{{ local_username }}/.zshrc"
+            block: |
+              # rust binaries installed using cargo
+              export PATH="$PATH:/home/{{ local_username }}/.cargo/bin"
+            create: no
+
+        - name: set path for golang binaries
+          blockinfile:
+            path: "~{{ local_username }}/.zshrc"
+            block: |
+              # golang binaries
+              export PATH="$PATH:/home/{{ local_username }}/go/bin"
+            create: no
+      become: true
+      become_user: "{{ local_username }}"
+
     - name: Set system time to UTC
       community.general.timezone:
         name: Etc/UTC
