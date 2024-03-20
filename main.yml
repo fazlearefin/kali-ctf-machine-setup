@@ -307,26 +307,21 @@
         state: link
       with_items: "{{ projectdiscovery_tools }}"
 
-    - name: set for essential paths
+    - name: set some for essential paths
       block:
-        - name: set path for pipx
-          ansible.builtin.shell:
-            cmd: "/usr/bin/pipx ensurepath"
-
-        - name: set path for rust binaries
+        - name: set bin path for rust/cargo, pipx, and golang
           blockinfile:
             path: "~{{ local_username }}/.zshrc"
+            marker: "# {mark} ANSIBLE MANAGED BLOCK - bin paths"
             block: |
               # rust binaries installed using cargo
               export PATH="$PATH:/home/{{ local_username }}/.cargo/bin"
-            create: no
 
-        - name: set path for golang binaries
-          blockinfile:
-            path: "~{{ local_username }}/.zshrc"
-            block: |
               # golang binaries
               export PATH="$PATH:/home/{{ local_username }}/go/bin"
+
+              # pipx binaries
+              export PATH="$PATH:/home/{{ local_username }}/.local/bin"
             create: no
       become: true
       become_user: "{{ local_username }}"
