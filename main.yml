@@ -326,6 +326,23 @@
       become: true
       become_user: "{{ local_username }}"
 
+    - name: Generate ssh keys
+      block:
+        - name: Ensure .ssh directory exists
+          file:
+            path: "~{{ local_username }}/.ssh"
+            state: directory
+            mode: 0700
+
+        - name: Generate SSH key pair
+          community.crypto.openssh_keypair:
+            state: present
+            type: rsa
+            size: 4096
+            path: "~{{ local_username }}/.ssh/id_rsa"
+      become: true
+      become_user: "{{ local_username }}"
+
     - name: Set system time to UTC
       community.general.timezone:
         name: Etc/UTC
