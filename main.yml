@@ -347,10 +347,10 @@
         - name: Copy sample .shell_aliases and .shell_functions files
           ansible.builtin.copy:
             src: "{{ item }}"
-            dest: "~{{ local_username }}/{{ item }}"
+            dest: "~{{ local_username }}/{{ item | basename }}"
           with_items:
-            - .shell_aliases
-            - .shell_functions
+            - home/user/.shell_aliases
+            - home/user/.shell_functions
 
         - name: Include .shell_aliases and .shell_functions files in .zshrc
           ansible.builtin.blockinfile:
