@@ -343,6 +343,26 @@
       become: true
       become_user: "{{ local_username }}"
 
+    - block:
+        - name: Copy sample .shell_aliases and .shell_functions files
+          ansible.builtin.copy:
+            src: "{{ item }}"
+            dest: "~{{ local_username }}/{{ item }}"
+          with_items:
+            - .shell_aliases
+            - .shell_functions
+
+        - name: Include .shell_aliases and .shell_functions files in .zshrc
+          ansible.builtin.blockinfile:
+            path: "~{{ local_username }}/.zshrc"
+            marker: "# {mark} ANSIBLE MANAGED BLOCK - extra shell functions and aliases"
+            block: |
+              [[ -f ~/.shell_aliases ]] && source ~/.shell_aliases
+              [[ -f ~/.shell_functions ]] && source ~/.shell_functions
+            create: no
+      become: true
+      become_user: "{{ local_username }}"
+
     - name: Set system time to UTC
       community.general.timezone:
         name: Etc/UTC
