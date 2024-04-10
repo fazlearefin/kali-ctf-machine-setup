@@ -356,6 +356,29 @@
       become: true
       become_user: "{{ local_username }}"
 
+    - name: Install VSCodium and some plugins
+      block:
+        - name: Add VSCodium apt key
+          ansible.builtin.apt_key:
+            url: "{{ vscodium.apt_key_url }}"
+            keyring: "{{ vscodium.apt_key_keyring }}"
+
+        - name: Add VSCodium repo
+          ansible.builtin.apt_repository:
+            repo: "{{ vscodium.repo }}"
+            state: present
+            filename: "{{ vscodium.repo_filename }}"
+
+        - name: Install the lastest version of VSCodium
+          ansible.builtin.apt:
+            name: "{{ vscodium.package }}"
+
+        - name: Install some VSCodium extensions
+          ansible.builtin.command: "codium --install-extension {{ item }}"
+          with_items: "{{ vscodium.extensions }}"
+          become: true
+          become_user: "{{ local_username }}"
+
     - name: Set system time to UTC
       community.general.timezone:
         name: Etc/UTC
