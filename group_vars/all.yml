@@ -49,6 +49,9 @@ system_packages:
   - cargo
   - golang-go
   - mtr-tiny
+  - oscanner
+  - tnscmd10g
+  - wkhtmltopdf
   - trivy  # Find vulnerabilities, misconfigurations, secrets, SBOM in containers, Kubernetes, code repositories, clouds and more
   - mitmproxy  # interactive TLS-capable intercepting HTTP proxy
   - realtek-rtl88xxau-dkms  # Realtek RTL88xxAU driver in DKMS format
