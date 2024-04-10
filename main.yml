@@ -300,13 +300,6 @@
       become: true
       become_user: "{{ local_username }}"
 
-    - name: Create symlinks for projectdiscovery.io tools
-      ansible.builtin.file:
-        src: "~{{ local_username }}/.pdtm/go/bin/{{ item }}"
-        dest: "/usr/local/bin/{{ item }}"
-        state: link
-      with_items: "{{ projectdiscovery_tools }}"
-
     - name: set some for essential paths
       block:
         - name: set bin path for rust/cargo, pipx, and golang
