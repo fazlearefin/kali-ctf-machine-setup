@@ -94,7 +94,7 @@ projectdiscovery_tool_manager_url: "https://api.github.com/repos/projectdiscover
 vscodium:
   apt_key_url: "https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg"
   apt_key_keyring: "/etc/apt/trusted.gpg.d/vscodium-archive-keyring.gpg"
-  repo: "deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main"
+  repo: "deb [ signed-by=/etc/apt/trusted.gpg.d/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main"
   package: "codium"
   repo_filename: "vscodium"
   extensions:
