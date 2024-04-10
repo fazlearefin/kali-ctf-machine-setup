@@ -260,11 +260,11 @@
           register: pdtm_latest_release
 
         - name: Extract pdtm version from the latest release URL
-          set_fact:
+          ansible.builtin.set_fact:
             pdtm_version: "{{ pdtm_latest_release.json.tag_name | regex_replace('^v', '') }}"
 
         - name: Extract download URL for pdtm
-          set_fact:
+          ansible.builtin.set_fact:
             pdtm_download_url: "{{ pdtm_latest_release.json.assets | selectattr('name', 'match', '^pdtm_' ~ pdtm_version ~ '_linux_amd64.zip$') | map(attribute='browser_download_url') | first }}"
 
         - name: Download pdtm file
@@ -310,7 +310,7 @@
     - name: set some for essential paths
       block:
         - name: set bin path for rust/cargo, pipx, and golang
-          blockinfile:
+          ansible.builtin.blockinfile:
             path: "~{{ local_username }}/.zshrc"
             marker: "# {mark} ANSIBLE MANAGED BLOCK - bin paths"
             block: |
@@ -329,7 +329,7 @@
     - name: Generate ssh keys
       block:
         - name: Ensure .ssh directory exists
-          file:
+          ansible.builtin.file:
             path: "~{{ local_username }}/.ssh"
             state: directory
             mode: 0700
