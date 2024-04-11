@@ -52,6 +52,11 @@ system_packages:
   - oscanner
   - tnscmd10g
   - wkhtmltopdf
+  - hping3
+  - iperf3
+  - p0f
+  - ngrep  # grep for network traffic
+  - tcptraceroute  # traceroute implementation using TCP packets
   - trivy  # Find vulnerabilities, misconfigurations, secrets, SBOM in containers, Kubernetes, code repositories, clouds and more
   - mitmproxy  # interactive TLS-capable intercepting HTTP proxy
   - realtek-rtl88xxau-dkms  # Realtek RTL88xxAU driver in DKMS format
