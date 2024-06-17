@@ -36,7 +36,7 @@ system_packages:
   - testssl.sh
   - jq
   - nala
-  - tilix  # tiling terminal emulator for Linux using GTK+ 3
+  #- tilix  # tiling terminal emulator for Linux using GTK+ 3
   - pipx
   - btop
   - duf

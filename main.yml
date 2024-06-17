@@ -124,15 +124,15 @@
         - name: refresh fonts cache
           ansible.builtin.shell: "fc-cache -fv"
 
-        - name: copy tilix config template
-          ansible.builtin.copy:
-            src: home/user/tilix.dconf
-            dest: /tmp/tilix.dconf
-            force: true
-
-        - name: import modified tilix config
-          ansible.builtin.shell: dconf load /com/gexperts/Tilix/ < /tmp/tilix.dconf
-          ignore_errors: true
+#        - name: copy tilix config template
+#          ansible.builtin.copy:
+#            src: home/user/tilix.dconf
+#            dest: /tmp/tilix.dconf
+#            force: true
+#
+#        - name: import modified tilix config
+#          ansible.builtin.shell: dconf load /com/gexperts/Tilix/ < /tmp/tilix.dconf
+#          ignore_errors: true
       become: yes
       become_user: "{{ local_username }}"
 
