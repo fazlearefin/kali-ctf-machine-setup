@@ -65,6 +65,9 @@ system_packages:
   - ligolo-ng  # an advanced, yet simple, tunneling/pivoting tool that uses a TUN interface
   - kali-tools-top10    # metapackage https://www.kali.org/tools/kali-meta/#kali-tools-top10
 
+problematic_packages:
+  - python3-httpx    # this installs `httpx` which interferes with `httpx` from projectdiscovery.io
+
 pipx_packages:
   - ruff  # python linter and formatter
   - chepy  # a python lib/cli equivalent of the awesome CyberChef tool

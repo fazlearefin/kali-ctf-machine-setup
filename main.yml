@@ -385,6 +385,12 @@
 
     - name: Final cleanup
       block:
+        - name: Remove problematic packages
+          ansible.builtin.apt:
+            pkg: "{{ problematic_packages }}"
+            state: absent
+            purge: true
+
         - name: cleanup apt packages and repodata
           ansible.builtin.apt:
             autoremove: true
