@@ -344,14 +344,16 @@
           with_items:
             - home/user/.shell_aliases
             - home/user/.shell_functions
+            - home/user/.shell_variables
 
-        - name: Include .shell_aliases and .shell_functions files in .zshrc
+        - name: Include .shell_aliases, .shell_functions and .shell_variables files in .zshrc
           ansible.builtin.blockinfile:
             path: "~{{ local_username }}/.zshrc"
             marker: "# {mark} ANSIBLE MANAGED BLOCK - extra shell functions and aliases"
             block: |
               [[ -f ~/.shell_aliases ]] && source ~/.shell_aliases
               [[ -f ~/.shell_functions ]] && source ~/.shell_functions
+              [[ -f ~/.shell_functions ]] && source ~/.shell_variables
             create: no
       become: true
       become_user: "{{ local_username }}"
