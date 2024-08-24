@@ -34,6 +34,7 @@ system_packages:
   - ripgrep
   - ncat
   - testssl.sh
+  - httpie
   - jq
   - nala
   #- tilix  # tiling terminal emulator for Linux using GTK+ 3
