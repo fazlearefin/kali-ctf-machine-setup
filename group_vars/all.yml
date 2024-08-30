@@ -26,7 +26,6 @@ system_packages:
   - hashrat
   - name-that-hash
   - feroxbuster
-  - tealdeer
   - tig
   - python3-cachecontrol
   - python3-poetry
@@ -70,6 +69,7 @@ problematic_packages:
   - python3-httpx    # this installs `httpx` which interferes with `httpx` from projectdiscovery.io
 
 pipx_packages:
+  - tldr  # official tldr python client
   - ruff  # python linter and formatter
   - chepy  # a python lib/cli equivalent of the awesome CyberChef tool
   - git+https://github.com/Pennyw0rth/NetExec  # network pentest tool; replacement for discontinued CrackMapExec
