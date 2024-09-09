@@ -393,7 +393,9 @@
         name: Etc/UTC
 
     - name: Get an offline copy of all tldr pages
-      ansible.builtin.shell: tldr --update
+      ansible.builtin.shell: |
+        source ~/.zshrc
+        tldr --update
       become: true
       become_user: "{{ local_username }}"
 
