@@ -1,20 +1,21 @@
 ---
 
-- hosts: localhost
+- name: Install essential tools
+  hosts: localhost
 
   tasks:
-    - name: tune system swappiness
+    - name: Tune system swappiness
       ansible.posix.sysctl:
         name: vm.swappiness
         value: '0'
         state: present
 
-    - name: perform a dist upgrade
+    - name: Perform a dist upgrade
       ansible.builtin.apt:
         update_cache: true
         upgrade: full
 
-    - name: install some recommended additional packages
+    - name: Install some recommended additional packages
       ansible.builtin.apt:
         pkg: "{{ system_packages }}"
         state: present
@@ -26,7 +27,8 @@
       become: true
       become_user: "{{ local_username }}"
 
-    - block:
+    - name: Create seclists symlink
+      block:
         - name: Gather the package facts
           ansible.builtin.package_facts:
             manager: auto
@@ -44,19 +46,15 @@
             state: link
           when: "'seclists' in ansible_facts.packages"
 
-    - name: get offline copy of all tldr pages
-      ansible.builtin.shell: tldr --update
-      become: true
-      become_user: "{{ local_username }}"
-
-    - block:
-        - name: install tor and proxychains
+    - name: Setup anonymous browsing capability
+      block:
+        - name: Install tor and proxychains
           ansible.builtin.apt:
             pkg:
               - tor
               - proxychains4
 
-        - name: copy torrc file
+        - name: Copy torrc file
           ansible.builtin.copy:
             src: etc/tor/torrc
             dest: /etc/tor/torrc
@@ -65,13 +63,13 @@
             mode: '0644'
             backup: true
 
-        - name: ensure tor service runs on system startup
+        - name: Ensure tor service runs on system startup
           ansible.builtin.systemd:
             name: tor
             state: started
             enabled: true
 
-        - name: copy proxychains4 config file
+        - name: Copy proxychains4 config file
           ansible.builtin.copy:
             src: etc/proxychains4.conf
             dest: /etc/proxychains4.conf
@@ -80,14 +78,15 @@
             mode: '0644'
             backup: true
 
-    - block:
-        - name: install packages needed for tmux
+    - name: Setup tmux
+      block:
+        - name: Install packages needed for tmux
           ansible.builtin.apt:
             pkg:
               - tmux
               - xsel
 
-        - name: git clone tmux plugin repo
+        - name: Git clone tmux plugin repo
           ansible.builtin.git:
             repo: 'https://github.com/tmux-plugins/tpm'
             dest: "~{{ local_username }}/.tmux/plugins/tpm"
@@ -96,7 +95,7 @@
           become: true
           become_user: "{{ local_username }}"
 
-        - name: copy sample .tmux.conf file to the user's homedir
+        - name: Copy sample .tmux.conf file to the user's homedir
           ansible.builtin.copy:
             src: home/user/.tmux.conf
             dest: "~{{ local_username }}/.tmux.conf"
@@ -104,24 +103,29 @@
           become: true
           become_user: "{{ local_username }}"
 
-        - name: install all required tmux plugins
+        - name: Install all required tmux plugins
           ansible.builtin.shell: "~{{local_username}}/.tmux/plugins/tpm/scripts/install_plugins.sh"
           become: true
           become_user: "{{ local_username }}"
 
-    - block:
-        - name: create local fonts directory
+    - name: Setup custom fonts
+      become: true
+      become_user: "{{ local_username }}"
+      block:
+        - name: Create local fonts directory
           ansible.builtin.file:
             path: "~{{ local_username }}/.local/share/fonts"
+            mode: '0755'
             state: directory
 
-        - name: download nerd fonts to local fonts folder
+        - name: Download nerd fonts to local fonts folder
           ansible.builtin.get_url:
-            url: "{{ item  }}"
+            url: "{{ item }}"
             dest: "~{{ local_username }}/.local/share/fonts/"
+            mode: '0644'
           with_items: "{{ nerd_fonts }}"
 
-        - name: refresh fonts cache
+        - name: Refresh fonts cache
           ansible.builtin.shell: "fc-cache -fv"
 
 #        - name: copy tilix config template
@@ -133,64 +137,63 @@
 #        - name: import modified tilix config
 #          ansible.builtin.shell: dconf load /com/gexperts/Tilix/ < /tmp/tilix.dconf
 #          ignore_errors: true
-      become: yes
-      become_user: "{{ local_username }}"
 
-    - name: "add {{ local_username }} user to kali-trusted group for passwordless sudo"
+    - name: "Enable passwordless sudo for user {{ local_username }}"
       ansible.builtin.user:
         name: "{{ local_username }}"
         groups: kali-trusted
         append: true
 
-    - block:
-        - name: create base dir for privesc scripts
+    - name: Clone some git repositories
+      block:
+        - name: Create base dir for privesc scripts
           ansible.builtin.file:
             path: /opt/privesc-scripts
             state: directory
             mode: '0775'
 
-        - name: create symlink from /usr/share
+        - name: Create symlink from /usr/share
           ansible.builtin.file:
             src: /opt/privesc-scripts
             dest: /usr/share/privesc-scripts
             state: link
 
-        - name: git clone PEASS-ng
+        - name: Git clone PEASS-ng
           ansible.builtin.git:
             repo: 'https://github.com/carlospolop/PEASS-ng.git'
             dest: /opt/privesc-scripts/PEASS-ng
             clone: true
             version: master
 
-        - name: git clone LinEnum
+        - name: Git clone LinEnum
           ansible.builtin.git:
             repo: 'https://github.com/rebootuser/LinEnum.git'
             dest: /opt/privesc-scripts/LinEnum
             clone: true
             version: master
 
-        - name: git clone linux-smart-enumeration
+        - name: Git clone linux-smart-enumeration
           ansible.builtin.git:
             repo: 'https://github.com/diego-treitos/linux-smart-enumeration'
             dest: /opt/privesc-scripts/linux-smart-enumeration
             clone: true
             version: master
 
-        - name: git clone linux-exploit-suggester
+        - name: Git clone linux-exploit-suggester
           ansible.builtin.git:
             repo: 'https://github.com/The-Z-Labs/linux-exploit-suggester.git'
             dest: /opt/privesc-scripts/linux-exploit-suggester
             clone: true
             version: master
 
-        - name: git clone GitTools
+        - name: Git clone GitTools
           ansible.builtin.git:
             repo: 'https://github.com/internetwache/GitTools.git'
             dest: /opt/GitTools
             clone: true
             version: master
 
-        - name: git clone zphisher  # An automated phishing tool with 30+ templates
+        - name: Git clone zphisher  # An automated phishing tool with 30+ templates
           ansible.builtin.git:
             repo: 'https://github.com/htr-tech/zphisher.git'
             dest: /opt/zphisher
@@ -198,55 +201,58 @@
             version: master
             depth: 1
 
-        - name: git clone vulhub  # Pre-Built Vulnerable Environments Based on Docker-Compose
+        - name: Git clone vulhub  # Pre-Built Vulnerable Environments Based on Docker-Compose
           ansible.builtin.git:
             repo: 'https://github.com/vulhub/vulhub.git'
             dest: /opt/vulhub
             clone: true
             version: master
 
-        - name: git clone WEF (Wi-Fi Exploitation Framework)
+        - name: Git clone WEF (Wi-Fi Exploitation Framework)
           ansible.builtin.git:
             repo: 'https://github.com/D3Ext/WEF.git'
             dest: /opt/WEF
             clone: true
             version: main
 
-    - block:
-        - name: install docker packages
+    - name: Setup some CTF style vulnerable docker images and packages
+      when: setup_vuln_docker_images
+      block:
+        - name: Install docker packages
           ansible.builtin.apt:
             pkg:
               - docker.io
               - docker-compose
               - python3-docker
 
-        - name: make local user able to run docker commands
+        - name: Make local user able to run docker commands
           ansible.builtin.user:
             name: "{{ local_username }}"
             append: true
             groups:
               - docker
 
-        - name: pull some vulnerable docker images
+        - name: Pull some vulnerable docker images
           community.docker.docker_image:
             name: "{{ item }}"
             source: pull
           loop:
             - webgoat/webgoat          # docker run --rm -it -p 127.0.0.1:8080:8080 -p 127.0.0.1:9090:9090 -e TZ=UTC --name webgoat webgoat/webgoat
             - bkimminich/juice-shop    # docker run --rm -d -p 3000:3000 --name juice-shop bkimminich/juice-shop
-      when: setup_vuln_docker_images
 
-    - block:
         - name: Install DVWA package
           ansible.builtin.apt:
             pkg:
               - dvwa
-        # start the service using sudo systemctl start dvwa
+        # start the service using `sudo systemctl start dvwa`
         # navigate to http://localhost:42001
         # default creds are admin/password
         # Security Level can be changed in /etc/dvwa/config/config.inc.php
 
-    - name: install projectdiscovery.io OSS tools
+
+    - name: Install projectdiscovery.io OSS tools
+      become: true
+      become_user: "{{ local_username }}"
       block:
         - name: Create projectdiscovery temporary directory for extraction
           ansible.builtin.file:
@@ -256,7 +262,7 @@
         - name: Get latest release information for pdtm
           ansible.builtin.uri:
             url: "{{ projectdiscovery_tool_manager_url }}"
-            return_content: yes
+            return_content: true
           register: pdtm_latest_release
 
         - name: Extract pdtm version from the latest release URL
@@ -270,13 +276,14 @@
         - name: Download pdtm file
           ansible.builtin.get_url:
             url: "{{ pdtm_download_url }}"
+            mode: '0644'
             dest: "/tmp/projectdiscovery/pdtm_{{ pdtm_version }}_linux_amd64.zip"
 
         - name: Unzip pdtm file
           ansible.builtin.unarchive:
             src: "/tmp/projectdiscovery/pdtm_{{ pdtm_version }}_linux_amd64.zip"
             dest: /tmp/projectdiscovery
-            remote_src: yes
+            remote_src: true
 
         - name: Execute pdtm file
           ansible.builtin.shell:
@@ -296,13 +303,13 @@
 
         - name: Update all projectdiscovery.io tools
           ansible.builtin.shell:
-            cmd: "~{{ local_username }}/.pdtm/go/bin/pdtm -ua"
+            cmd: "~{{ local_username }}/.pdtm/go/bin/pdtm -update-all"
+
+    - name: Setup some essential paths
       become: true
       become_user: "{{ local_username }}"
-
-    - name: set some for essential paths
       block:
-        - name: set bin path for rust/cargo, pipx, and golang
+        - name: Set bin path for rust/cargo, pipx, and golang
           ansible.builtin.blockinfile:
             path: "~{{ local_username }}/.zshrc"
             marker: "# {mark} ANSIBLE MANAGED BLOCK - bin paths"
@@ -315,17 +322,17 @@
 
               # pipx binaries
               export PATH="$PATH:/home/{{ local_username }}/.local/bin"
-            create: no
-      become: true
-      become_user: "{{ local_username }}"
+            create: false
 
     - name: Generate ssh keys
+      become: true
+      become_user: "{{ local_username }}"
       block:
         - name: Ensure .ssh directory exists
           ansible.builtin.file:
             path: "~{{ local_username }}/.ssh"
             state: directory
-            mode: 0700
+            mode: '0700'
 
         - name: Generate SSH key pair
           community.crypto.openssh_keypair:
@@ -333,14 +340,16 @@
             type: rsa
             size: 4096
             path: "~{{ local_username }}/.ssh/id_rsa"
+
+    - name: Setup custom shell aliases and functions
       become: true
       become_user: "{{ local_username }}"
-
-    - block:
+      block:
         - name: Copy sample .shell_aliases and .shell_functions files
           ansible.builtin.copy:
             src: "{{ item }}"
             dest: "~{{ local_username }}/{{ item | basename }}"
+            mode: '0644'
           with_items:
             - home/user/.shell_aliases
             - home/user/.shell_functions
@@ -353,10 +362,8 @@
             block: |
               [[ -f ~/.shell_aliases ]] && source ~/.shell_aliases
               [[ -f ~/.shell_functions ]] && source ~/.shell_functions
-              [[ -f ~/.shell_functions ]] && source ~/.shell_variables
-            create: no
-      become: true
-      become_user: "{{ local_username }}"
+              [[ -f ~/.shell_variables ]] && source ~/.shell_variables
+            create: false
 
     - name: Install VSCodium and some plugins
       block:
@@ -385,6 +392,12 @@
       community.general.timezone:
         name: Etc/UTC
 
+    - name: Get an offline copy of all tldr pages
+      ansible.builtin.shell: |
+        /bin/zsh -i -c 'tldr --update'
+      become: true
+      become_user: "{{ local_username }}"
+
     - name: Final cleanup
       block:
         - name: Remove problematic packages
@@ -393,7 +406,7 @@
             state: absent
             purge: true
 
-        - name: cleanup apt packages and repodata
+        - name: Cleanup apt packages and repodata
           ansible.builtin.apt:
             autoremove: true
             autoclean: true
