@@ -84,6 +84,15 @@ docker run --rm -it -p 127.0.0.1:8080:8080 -p 127.0.0.1:9090:9090 -e TZ=UTC --na
 # use web browsser to go to http://127.0.0.1:8080/WebGoat in Kali host
 ```
 
+#### DVWA (Damn Vulenerable Web Application)
+
+```zsh
+sudo systemctl start dvwa
+# navigate to http://localhost:42001
+# default creds are admin:password
+# Security Level can be changed in `/etc/dvwa/config/config.inc.php`
+```
+
 ---
 
 ## Additional Git Repos
