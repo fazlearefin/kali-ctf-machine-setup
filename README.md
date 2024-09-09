@@ -121,6 +121,7 @@ Additional git repos cloned locally at these locations:
 - [CI/CD Goat](https://github.com/cider-security-research/cicd-goat)
 - [h4cker](https://github.com/The-Art-of-Hacking/h4cker)
 - [PortSwigger Web Security Academy](https://portswigger.net/web-security/all-materials)
+- [Recommended WiFi Adapters for Kali Linux](https://github.com/morrownr/USB-WiFi/blob/main/home/Recommended_Adapters_for_Kali_Linux.md)
 
 ---
 
