@@ -283,7 +283,6 @@
           ansible.builtin.unarchive:
             src: "/tmp/projectdiscovery/pdtm_{{ pdtm_version }}_linux_amd64.zip"
             dest: /tmp/projectdiscovery
-            mode: '0644'
             remote_src: true
 
         - name: Execute pdtm file
