@@ -388,6 +388,15 @@
           become: true
           become_user: "{{ local_username }}"
 
+    - name: build and install rust binaries using cargo
+      community.general.cargo:
+        name: "{{ item }}"
+        locked: true
+        state: latest
+      with_items: "{{ cargo_packages }}"
+      become: true
+      become_user: "{{ local_username }}"
+
     - name: Set system time to UTC
       community.general.timezone:
         name: Etc/UTC
