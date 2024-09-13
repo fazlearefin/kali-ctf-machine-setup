@@ -55,6 +55,12 @@ system_packages:
   - hping3
   - iperf3
   - p0f
+  - git
+  - git-extras
+  - mdk4
+  - xterm
+  - xterm-cyrillic
+  - hcxtools
   - ngrep  # grep for network traffic
   - tcptraceroute  # traceroute implementation using TCP packets
   - trivy  # Find vulnerabilities, misconfigurations, secrets, SBOM in containers, Kubernetes, code repositories, clouds and more
