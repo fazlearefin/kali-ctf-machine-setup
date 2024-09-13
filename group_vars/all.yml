@@ -59,7 +59,6 @@ system_packages:
   - git-extras
   - mdk4
   - xterm
-  - xterm-cyrillic
   - hcxtools
   - ngrep  # grep for network traffic
   - tcptraceroute  # traceroute implementation using TCP packets
