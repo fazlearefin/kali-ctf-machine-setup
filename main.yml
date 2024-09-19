@@ -88,7 +88,7 @@
 
         - name: Git clone tmux plugin repo
           ansible.builtin.git:
-            repo: 'https://github.com/tmux-plugins/tpm'
+            repo: "{{ tmux_plugin_repo }}"
             dest: "~{{ local_username }}/.tmux/plugins/tpm"
             clone: true
             version: master

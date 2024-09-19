@@ -5,6 +5,7 @@ setup_vuln_docker_images: false
 
 system_packages:
   - amass
+  - alacritty
   - seclists
   - payloadsallthethings
   - linux-exploit-suggester
@@ -138,5 +139,8 @@ vscodium:
     - ms-python.python
     - oderwat.indent-rainbow
     - rangav.vscode-thunder-client
+
+tmux_plugin_repo: "https://github.com/tmux-plugins/tpm"
+
 
 ...
