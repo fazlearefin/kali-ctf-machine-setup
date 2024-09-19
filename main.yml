@@ -407,6 +407,15 @@
       become: true
       become_user: "{{ local_username }}"
 
+    - name: Initialize zoxide in zsh shell
+      ansible.builtin.lineinfile:
+        path: "~{{ local_username }}/.zshrc"
+        line: "{{ item }}"
+      with_items:
+        - ""
+        - "# initialize zoxide"
+        - eval "$(zoxide init zsh)"
+
     - name: Final cleanup
       block:
         - name: Remove problematic packages
