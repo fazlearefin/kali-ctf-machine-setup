@@ -85,6 +85,10 @@ cargo_packages:
   - xh  # drop-in replacement for http/httpie
   - tlrc  # official tldr rust client
 
+golang_tools:
+  - github.com/jesseduffield/lazygit@latest  # simple terminal UI for git commands
+  - github.com/wagoodman/dive@latest  # tool for exploring each layer in a docker image
+
 # nerd fonts from https://github.com/ryanoasis/nerd-fonts
 nerd_fonts:
   - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/CascadiaCode/Bold/CaskaydiaCoveNerdFontMono-BoldItalic.ttf    # don't remove; alacritty config uses this
