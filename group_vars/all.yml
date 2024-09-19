@@ -22,6 +22,8 @@ system_packages:
   - 2to3
   - rlwrap
   - bat
+  - eza  # alternative `ls` command
+  - zoxide  # smarter `cd` command
   - burpsuite
   - hashrat
   - name-that-hash
