@@ -427,6 +427,14 @@
       become: true
       become_user: "{{ local_username }}"
 
+    - block:
+        - name: Clone lazyvim starter git repo
+          ansible.builtin.git:
+            repo: "{{ lazyvim_starter_url }}"
+            dest: "~{{ local_username }}/.config/nvim"
+      become: true
+      become_user: "{{ local_username }}"
+
     - name: Initialize zoxide in zsh shell
       ansible.builtin.lineinfile:
         path: "~{{ local_username }}/.zshrc"

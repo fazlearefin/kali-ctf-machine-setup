@@ -63,6 +63,10 @@ system_packages:
   - mdk4
   - xterm
   - hcxtools
+  - neovim
+  - luarocks  # required by neovim/lazyvim
+  - fd-find  # required by neovim/lazyvim
+  - tree-sitter-cli  # required by neovim/lazyvim
   - ngrep  # grep for network traffic
   - tcptraceroute  # traceroute implementation using TCP packets
   - trivy  # Find vulnerabilities, misconfigurations, secrets, SBOM in containers, Kubernetes, code repositories, clouds and more
@@ -144,5 +148,7 @@ vscodium:
 tmux_plugin_repo: "https://github.com/tmux-plugins/tpm"
 
 alacritty_themes_repo: "https://github.com/alacritty/alacritty-theme"
+
+lazyvim_starter_url: https://github.com/LazyVim/starter.git
 
 ...
