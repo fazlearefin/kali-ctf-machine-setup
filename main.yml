@@ -415,7 +415,7 @@
 
         - name: Clone alacritty themes git repo
           ansible.builtin.git:
-            repo: "{{ terminal_customizations_alacritty_themes_repo }}"
+            repo: "{{ alacritty_themes_repo }}"
             dest: "~{{ local_username }}/.config/alacritty/themes"
             clone: true
 
