@@ -1,0 +1,40 @@
+import = ["~/.config/alacritty/themes/themes/tokyo-night.toml"]
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+decorations = "Buttonless"
+opacity = 0.9
+blur = true
+
+[window.padding]
+x = 10
+y = 10
+
+[font]
+size = 10
+
+[font.normal]
+family = "CaskaydiaCove Nerd Font Mono"
+style = "Regular"
+
+[font.bold]
+family = "CaskaydiaCove Nerd Font Mono"
+style = "Bold"
+
+[font.italic]
+family = "CaskaydiaCove Nerd Font Mono"
+style = "Italic"
+
+[font.bold_italic]
+family = "CaskaydiaCove Nerd Font Mono"
+style = "Bold Italic"
+
+# TIP: to check if fonts are installed correctly, type the following in the terminal:
+#    echo -e "\e[0m Regular \e[1m Bold \e[0;3m Italic \e[0;1;3m BoldItalic \e[0m"
+
+# uncomment below to start tmux on initial alacritty launch
+#[shell]
+#program = "/usr/bin/zsh"
+#args = ["-c", "if ! tmux ls 2>/dev/null | grep -q -E '^main.*attached'; then tmux attach -t main || tmux new -s main; else /usr/bin/zsh; fi"]

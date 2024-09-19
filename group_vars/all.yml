@@ -143,5 +143,6 @@ vscodium:
 
 tmux_plugin_repo: "https://github.com/tmux-plugins/tpm"
 
+alacritty_themes_repo: "https://github.com/alacritty/alacritty-theme"
 
 ...
