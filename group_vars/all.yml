@@ -22,6 +22,7 @@ system_packages:
   - nishang
   - 2to3
   - rlwrap
+  - fzf
   - bat
   - eza  # alternative `ls` command
   - zoxide  # smarter `cd` command

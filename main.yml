@@ -412,6 +412,15 @@
         - "# initialize zoxide"
         - eval "$(zoxide init zsh)"
 
+    - name: Initialize fzf in zsh shell
+      ansible.builtin.lineinfile:
+        path: "~{{ local_username }}/.zshrc"
+        line: "{{ item }}"
+      with_items:
+        - ""
+        - "# Set up fzf key bindings and fuzzy completion"
+        - source <(fzf --zsh)
+
     - name: Final cleanup
       block:
         - name: Remove problematic packages
