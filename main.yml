@@ -7,8 +7,9 @@
     - name: Tune system swappiness
       ansible.posix.sysctl:
         name: vm.swappiness
-        value: '0'
+        value: '1'
         state: present
+        reload: true
 
     - name: Perform a dist upgrade
       ansible.builtin.apt:
