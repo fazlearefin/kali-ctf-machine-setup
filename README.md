@@ -19,11 +19,17 @@ sudo apt update
 sudo apt full-upgrade -y
 ```
 
-### 2.   Install git and ansible
+### 2.   Install git and ansible-core
 
 ```zsh
 sudo apt update
-sudo apt install git ansible -y
+sudo apt install git ansible-core -y
+
+# install the additional ansible collections (do not use `sudo` here)
+ansible-galaxy collection install ansible.posix \
+  community.general \
+  community.docker \
+  community.crypto
 ```
 
 ### 3. Clone this repo
