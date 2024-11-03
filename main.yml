@@ -9,6 +9,8 @@
         name: vm.swappiness
         value: '1'
         state: present
+        sysctl_file: /etc/sysctl.d/99-swappiness.conf
+        sysctl_set: true
         reload: true
 
     - name: Perform a dist upgrade
