@@ -215,7 +215,6 @@
           ansible.builtin.apt:
             pkg:
               - docker.io
-              - docker-compose
               - python3-docker
 
         - name: Make local user able to run docker commands
