@@ -359,10 +359,11 @@
 
     - name: Install VSCodium and some plugins
       block:
-        - name: Add VSCodium apt key
-          ansible.builtin.apt_key:
+        - name: Download VSCodium GPG key
+          ansible.builtin.get_url:
             url: "{{ vscodium.apt_key_url }}"
-            keyring: "{{ vscodium.apt_key_keyring }}"
+            dest: "{{ vscodium.apt_key_keyring }}"
+            mode: '0644'
 
         - name: Add VSCodium repo
           ansible.builtin.apt_repository:
@@ -467,3 +468,4 @@
           ansible.builtin.apt:
             autoremove: true
             autoclean: true
+
