@@ -54,7 +54,6 @@ system_packages:
   - mtr-tiny
   - oscanner
   - tnscmd10g
-  - wkhtmltopdf
   - hping3
   - iperf3
   - p0f
