@@ -23,12 +23,37 @@
         pkg: "{{ system_packages }}"
         state: present
 
-    - name: Install some pipx packages
-      community.general.pipx:
-        name: "{{ item }}"
-      with_items: "{{ pipx_packages }}"
+    # pipx binaries break when python verison is upgraded, hence all the cleanup
+    - name: Install pipx packages
       become: true
       become_user: "{{ local_username }}"
+      block:
+        - name: Remove pipx directory
+          ansible.builtin.file:
+            path: "~{{ local_username }}/.local/share/pipx"
+            state: absent
+            force: true
+
+        - name: Remove pipx bin directory
+          ansible.builtin.file:
+            path: "~{{ local_username }}/.local/bin"
+            state: absent
+            force: true
+
+        - name: Ensure pipx directories exist again
+          ansible.builtin.file:
+            path: "~{{ local_username }}/.local/bin"
+            state: directory
+            mode: '0755'
+
+        - name: Install the pipx packages
+          community.general.pipx:
+            name: "{{ item }}"
+          with_items: "{{ pipx_packages }}"
+
+        - name: Reinstall all pipx packages to align with current Python version
+          ansible.builtin.command: "pipx reinstall-all --verbose"
+          changed_when: false
 
     - name: Create seclists symlink
       block:
