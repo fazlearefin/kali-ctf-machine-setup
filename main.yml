@@ -29,6 +29,7 @@
         ansible.builtin.file:
           path: "~{{ local_username }}/.local/pipx/venvs"
           state: absent
+          force: true
         become: true
         become_user: "{{ local_username }}"
 
@@ -36,6 +37,7 @@
         ansible.builtin.file:
           path: "~{{ local_username }}/.local/bin"
           state: absent
+          force: true
         become: true
         become_user: "{{ local_username }}"
 
