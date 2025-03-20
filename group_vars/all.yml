@@ -65,7 +65,7 @@ system_packages:
   - neovim
   - luarocks  # required by neovim/lazyvim
   - fd-find  # required by neovim/lazyvim
-  - tree-sitter-cli  # required by neovim/lazyvim
+  # - tree-sitter-cli  # required by neovim/lazyvim
   - ngrep  # grep for network traffic
   - tcptraceroute  # traceroute implementation using TCP packets
   - trivy  # Find vulnerabilities, misconfigurations, secrets, SBOM in containers, Kubernetes, code repositories, clouds and more
