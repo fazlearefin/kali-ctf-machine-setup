@@ -276,6 +276,15 @@
             path: /tmp/projectdiscovery
             state: directory
 
+        - name: Get host architecture
+          ansible.builtin.command: dpkg --print-architecture
+          register: host_architecture
+          changed_when: false
+
+        - name: Set architecture fact
+          ansible.builtin.set_fact:
+            cpu_arch: "{{ host_architecture.stdout }}"
+
         - name: Get latest release information for pdtm
           ansible.builtin.uri:
             url: "{{ projectdiscovery_tool_manager_url }}"
@@ -288,17 +297,17 @@
 
         - name: Extract download URL for pdtm
           ansible.builtin.set_fact:
-            pdtm_download_url: "{{ pdtm_latest_release.json.assets | selectattr('name', 'match', '^pdtm_' ~ pdtm_version ~ '_linux_amd64.zip$') | map(attribute='browser_download_url') | first }}"
+            pdtm_download_url: "{{ pdtm_latest_release.json.assets | selectattr('name', 'match', '^pdtm_' ~ pdtm_version ~ '_linux_' ~ cpu_arch ~ '.zip$') | map(attribute='browser_download_url') | first }}"
 
         - name: Download pdtm file
           ansible.builtin.get_url:
             url: "{{ pdtm_download_url }}"
             mode: '0644'
-            dest: "/tmp/projectdiscovery/pdtm_{{ pdtm_version }}_linux_amd64.zip"
+            dest: "/tmp/projectdiscovery/pdtm_{{ pdtm_version }}_linux_{{ cpu_arch }}.zip"
 
         - name: Unzip pdtm file
           ansible.builtin.unarchive:
-            src: "/tmp/projectdiscovery/pdtm_{{ pdtm_version }}_linux_amd64.zip"
+            src: "/tmp/projectdiscovery/pdtm_{{ pdtm_version }}_linux_{{ cpu_arch }}.zip"
             dest: /tmp/projectdiscovery
             remote_src: true
 
