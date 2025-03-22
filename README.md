@@ -1,5 +1,7 @@
 # kali-ctf-machine-setup
 
+![screenshot](.images/screenshot.png)
+
 This repo contains Ansible playbooks to install extra tools on top of Kali Linux for CTF (Capture The Flag) and pentest activities.
 
 These tools are useful when playing CTF in platforms such as [Hack The Box](https://www.hackthebox.com/), [TryHackMe](https://tryhackme.com/), etc.
