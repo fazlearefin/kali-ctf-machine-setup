@@ -25,8 +25,10 @@ sudo apt full-upgrade -y
 
 ```zsh
 sudo apt update
-sudo apt install git ansible-core -y
+sudo apt install git ansible -y
 
+# only if ansible package is NOT avaiable, install ansible-core and the required collections below
+sudo apt install ansible-core -y
 # install the additional ansible collections (do not use `sudo` here)
 ansible-galaxy collection install ansible.posix \
   community.general \
