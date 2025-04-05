@@ -28,17 +28,14 @@
       become: true
       become_user: "{{ local_username }}"
       block:
-        - name: Remove pipx directory
+        - name: Remove pipx and bin directory
           ansible.builtin.file:
-            path: "~{{ local_username }}/.local/share/pipx"
+            path: "{{ item }}"
             state: absent
             force: true
-
-        - name: Remove pipx bin directory
-          ansible.builtin.file:
-            path: "~{{ local_username }}/.local/bin"
-            state: absent
-            force: true
+          with_items:
+            - "~{{ local_username }}/.local/share/pipx"
+            - "~{{ local_username }}/.local/bin"
 
         - name: Ensure pipx directories exist again
           ansible.builtin.file:
@@ -49,7 +46,7 @@
         - name: Install the pipx packages
           community.general.pipx:
             name: "{{ item }}"
-          with_items: "{{ pipx_packages }}"
+          loop: "{{ pipx_packages }}"
 
         - name: Reinstall all pipx packages to align with current Python version
           ansible.builtin.command: "pipx reinstall-all --verbose"
@@ -182,6 +179,8 @@
             dest: /opt/privesc-scripts/PEASS-ng
             clone: true
             version: master
+            update: true
+            force: true
 
         - name: Git clone LinEnum
           ansible.builtin.git:
@@ -189,6 +188,8 @@
             dest: /opt/privesc-scripts/LinEnum
             clone: true
             version: master
+            update: true
+            force: true
 
         - name: Git clone linux-smart-enumeration
           ansible.builtin.git:
@@ -196,6 +197,8 @@
             dest: /opt/privesc-scripts/linux-smart-enumeration
             clone: true
             version: master
+            update: true
+            force: true
 
         - name: Git clone linux-exploit-suggester
           ansible.builtin.git:
@@ -203,6 +206,8 @@
             dest: /opt/privesc-scripts/linux-exploit-suggester
             clone: true
             version: master
+            update: true
+            force: true
 
         - name: Git clone GitTools
           ansible.builtin.git:
@@ -210,6 +215,8 @@
             dest: /opt/GitTools
             clone: true
             version: master
+            update: true
+            force: true
 
         - name: Git clone zphisher  # An automated phishing tool with 30+ templates
           ansible.builtin.git:
@@ -218,6 +225,8 @@
             clone: true
             version: master
             depth: 1
+            update: true
+            force: true
 
         - name: Git clone vulhub  # Pre-Built Vulnerable Environments Based on Docker-Compose
           ansible.builtin.git:
@@ -225,6 +234,8 @@
             dest: /opt/vulhub
             clone: true
             version: master
+            update: true
+            force: true
 
         - name: Git clone WEF (Wi-Fi Exploitation Framework)
           ansible.builtin.git:
@@ -232,6 +243,8 @@
             dest: /opt/WEF
             clone: true
             version: main
+            update: true
+            force: true
 
     - name: Setup some CTF style vulnerable docker images and packages
       when: setup_vuln_docker_images
@@ -253,6 +266,7 @@
           community.docker.docker_image:
             name: "{{ item }}"
             source: pull
+            force_source: true
           loop:
             - webgoat/webgoat          # docker run --rm -it -p 127.0.0.1:8080:8080 -p 127.0.0.1:9090:9090 -e TZ=UTC --name webgoat webgoat/webgoat
             - bkimminich/juice-shop    # docker run --rm -d -p 3000:3000 --name juice-shop bkimminich/juice-shop
