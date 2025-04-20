@@ -94,29 +94,32 @@ golang_tools:
   - github.com/wagoodman/dive@latest  # tool for exploring each layer in a docker image
 
 # nerd fonts from https://github.com/ryanoasis/nerd-fonts
+nerd_fonts_version: v3.3.0  # TODO: bump up version number as newer versions are made avaialbe from source git repo https://github.com/ryanoasis/nerd-fonts/releases/
+nerd_fonts_base_url: "https://github.com/ryanoasis/nerd-fonts/raw/{{ nerd_fonts_version }}/patched-fonts"
 nerd_fonts:
-  - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/CascadiaCode/Bold/CaskaydiaCoveNerdFontMono-BoldItalic.ttf    # don't remove; alacritty config uses this
-  - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/CascadiaCode/Bold/CaskaydiaCoveNerdFontMono-Bold.ttf          # don't remove; alacritty config uses this
-  - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/CascadiaCode/Regular/CaskaydiaCoveNerdFontMono-Italic.ttf     # don't remove; alacritty config uses this
-  - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/CascadiaCode/Regular/CaskaydiaCoveNerdFontMono-Regular.ttf    # don't remove; alacritty config uses this
-  - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Bold/FiraCodeNerdFontMono-Bold.ttf
-  - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/FiraCodeNerdFontMono-Regular.ttf
-  - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/Ligatures/BoldItalic/JetBrainsMonoNerdFontMono-BoldItalic.ttf
-  - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/Ligatures/Bold/JetBrainsMonoNerdFontMono-Bold.ttf
-  - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/Ligatures/Italic/JetBrainsMonoNerdFontMono-Italic.ttf
-  - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/Ligatures/Regular/JetBrainsMonoNerdFontMono-Regular.ttf
-  - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/BoldItalic/JetBrainsMonoNLNerdFontMono-BoldItalic.ttf
-  - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Bold/JetBrainsMonoNLNerdFontMono-Bold.ttf
-  - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Italic/JetBrainsMonoNLNerdFontMono-Italic.ttf
-  - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Regular/JetBrainsMonoNLNerdFontMono-Regular.ttf
-  - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/SourceCodePro/SauceCodeProNerdFontMono-BoldItalic.ttf
-  - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/SourceCodePro/SauceCodeProNerdFontMono-Bold.ttf
-  - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/SourceCodePro/SauceCodeProNerdFontMono-Italic.ttf
-  - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/SourceCodePro/SauceCodeProNerdFontMono-Regular.ttf
-  - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/VictorMono/Bold-Italic/VictorMonoNerdFontMono-BoldItalic.ttf
-  - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/VictorMono/Bold/VictorMonoNerdFontMono-Bold.ttf
-  - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/VictorMono/Italic/VictorMonoNerdFontMono-Italic.ttf
-  - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/VictorMono/Regular/VictorMonoNerdFontMono-Regular.ttf
+  - "{{ nerd_fonts_base_url }}/CascadiaCode/Bold/CaskaydiaCoveNerdFontMono-BoldItalic.ttf"    # don't remove; alacritty config uses this
+  - "{{ nerd_fonts_base_url }}/CascadiaCode/Bold/CaskaydiaCoveNerdFontMono-Bold.ttf"          # don't remove; alacritty config uses this
+  - "{{ nerd_fonts_base_url }}/CascadiaCode/Regular/CaskaydiaCoveNerdFontMono-Italic.ttf"     # don't remove; alacritty config uses this
+  - "{{ nerd_fonts_base_url }}/CascadiaCode/Regular/CaskaydiaCoveNerdFontMono-Regular.ttf"    # don't remove; alacritty config uses this
+  - "{{ nerd_fonts_base_url }}/FiraCode/Bold/FiraCodeNerdFontMono-Bold.ttf"
+  - "{{ nerd_fonts_base_url }}/FiraCode/Regular/FiraCodeNerdFontMono-Regular.ttf"
+  - "{{ nerd_fonts_base_url }}/JetBrainsMono/Ligatures/BoldItalic/JetBrainsMonoNerdFontMono-BoldItalic.ttf"
+  - "{{ nerd_fonts_base_url }}/JetBrainsMono/Ligatures/Bold/JetBrainsMonoNerdFontMono-Bold.ttf"
+  - "{{ nerd_fonts_base_url }}/JetBrainsMono/Ligatures/Italic/JetBrainsMonoNerdFontMono-Italic.ttf"
+  - "{{ nerd_fonts_base_url }}/JetBrainsMono/Ligatures/Regular/JetBrainsMonoNerdFontMono-Regular.ttf"
+  - "{{ nerd_fonts_base_url }}/JetBrainsMono/NoLigatures/BoldItalic/JetBrainsMonoNLNerdFontMono-BoldItalic.ttf"
+  - "{{ nerd_fonts_base_url }}/JetBrainsMono/NoLigatures/Bold/JetBrainsMonoNLNerdFontMono-Bold.ttf"
+  - "{{ nerd_fonts_base_url }}/JetBrainsMono/NoLigatures/Italic/JetBrainsMonoNLNerdFontMono-Italic.ttf"
+  - "{{ nerd_fonts_base_url }}/JetBrainsMono/NoLigatures/Regular/JetBrainsMonoNLNerdFontMono-Regular.ttf"
+  - "{{ nerd_fonts_base_url }}/SourceCodePro/SauceCodeProNerdFontMono-BoldItalic.ttf"
+  - "{{ nerd_fonts_base_url }}/SourceCodePro/SauceCodeProNerdFontMono-Bold.ttf"
+  - "{{ nerd_fonts_base_url }}/SourceCodePro/SauceCodeProNerdFontMono-Italic.ttf"
+  - "{{ nerd_fonts_base_url }}/SourceCodePro/SauceCodeProNerdFontMono-Regular.ttf"
+  - "{{ nerd_fonts_base_url }}/VictorMono/Bold-Italic/VictorMonoNerdFontMono-BoldItalic.ttf"
+  - "{{ nerd_fonts_base_url }}/VictorMono/Bold/VictorMonoNerdFontMono-Bold.ttf"
+  - "{{ nerd_fonts_base_url }}/VictorMono/Italic/VictorMonoNerdFontMono-Italic.ttf"
+  - "{{ nerd_fonts_base_url }}/VictorMono/Regular/VictorMonoNerdFontMono-Regular.ttf"
+  - "{{ nerd_fonts_base_url }}/DroidSansMono/DroidSansMNerdFontMono-Regular.otf"
 
 projectdiscovery_tools:
   - pdtm
