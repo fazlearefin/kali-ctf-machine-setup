@@ -94,13 +94,13 @@ golang_tools:
   - github.com/wagoodman/dive@latest  # tool for exploring each layer in a docker image
 
 # nerd fonts from https://github.com/ryanoasis/nerd-fonts
-nerd_fonts_version: v3.3.0  # TODO: bump up version number as newer versions are made avaialbe from source git repo https://github.com/ryanoasis/nerd-fonts/releases/
+nerd_fonts_version: v3.4.0  # TODO: bump up version number as newer versions are made avaialbe from source git repo https://github.com/ryanoasis/nerd-fonts/releases/
 nerd_fonts_base_url: "https://github.com/ryanoasis/nerd-fonts/raw/{{ nerd_fonts_version }}/patched-fonts"
 nerd_fonts:
-  - "{{ nerd_fonts_base_url }}/CascadiaCode/Bold/CaskaydiaCoveNerdFontMono-BoldItalic.ttf"    # don't remove; alacritty config uses this
-  - "{{ nerd_fonts_base_url }}/CascadiaCode/Bold/CaskaydiaCoveNerdFontMono-Bold.ttf"          # don't remove; alacritty config uses this
-  - "{{ nerd_fonts_base_url }}/CascadiaCode/Regular/CaskaydiaCoveNerdFontMono-Italic.ttf"     # don't remove; alacritty config uses this
-  - "{{ nerd_fonts_base_url }}/CascadiaCode/Regular/CaskaydiaCoveNerdFontMono-Regular.ttf"    # don't remove; alacritty config uses this
+  - "{{ nerd_fonts_base_url }}/CascadiaCode/CaskaydiaCoveNerdFontMono-BoldItalic.ttf"    # don't remove; alacritty config uses this
+  - "{{ nerd_fonts_base_url }}/CascadiaCode/CaskaydiaCoveNerdFontMono-Bold.ttf"          # don't remove; alacritty config uses this
+  - "{{ nerd_fonts_base_url }}/CascadiaCode/CaskaydiaCoveNerdFontMono-Italic.ttf"     # don't remove; alacritty config uses this
+  - "{{ nerd_fonts_base_url }}/CascadiaCode/CaskaydiaCoveNerdFontMono-Regular.ttf"    # don't remove; alacritty config uses this
   - "{{ nerd_fonts_base_url }}/FiraCode/Bold/FiraCodeNerdFontMono-Bold.ttf"
   - "{{ nerd_fonts_base_url }}/FiraCode/Regular/FiraCodeNerdFontMono-Regular.ttf"
   - "{{ nerd_fonts_base_url }}/JetBrainsMono/Ligatures/BoldItalic/JetBrainsMonoNerdFontMono-BoldItalic.ttf"
