@@ -20,7 +20,6 @@ system_packages:
   - gobuster
   - chromium
   - nishang
-  - 2to3
   - rlwrap
   - fzf
   - bat
