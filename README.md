@@ -4,32 +4,32 @@
 
 This repo contains Ansible playbooks to install extra tools on top of Kali Linux for CTF (Capture The Flag) and pentest activities.
 
-These tools are useful when playing CTF in platforms such as [Hack The Box](https://www.hackthebox.com/), [TryHackMe](https://tryhackme.com/), etc.
+These tools are useful when playing CTF on platforms such as [Hack The Box](https://www.hackthebox.com/), [TryHackMe](https://tryhackme.com/), etc.
 
 ## Howto?
 
 ### 0. Setup Kali Linux
 
-It is assummed that you have a plain vanilla installation of Kali Linux. This README is tailored for [Kali virtual machine images](https://www.kali.org/get-kali/#kali-virtual-machines)
+It is assumed that you have a plain vanilla installation of Kali Linux. This README is tailored for [Kali virtual machine images](https://www.kali.org/get-kali/#kali-virtual-machines)
 
 ### 1. Upgrade packages
 
-This step is optional as the ansible playbook takes care of this. But it is highly recommended you upgrade all the installed packges at this stage to avoid issues later.
+This step is optional as the Ansible playbook takes care of it. However, it is highly recommended to upgrade all installed packages at this stage to avoid issues later.
 
 ```zsh
 sudo apt update
 sudo apt full-upgrade -y
 ```
 
-### 2.   Install git and ansible-core
+### 2. Install git and ansible-core
 
 ```zsh
 sudo apt update
 sudo apt install git ansible -y
 
-# only if ansible package is NOT avaiable, install ansible-core and the required collections below
+# Only if the ansible package is NOT available, install ansible-core and the required collections below
 sudo apt install ansible-core -y
-# install the additional ansible collections (do not use `sudo` here)
+# Install the additional ansible collections (do not use `sudo` here)
 ansible-galaxy collection install ansible.posix \
   community.general \
   community.docker \
@@ -43,19 +43,19 @@ git clone https://github.com/fazlearefin/kali-ctf-machine-setup.git
 cd kali-ctf-machine-setup
 ```
 
-### 4. Run the ansible playbook to install the extra tools
+### 4. Run the Ansible playbook to install the extra tools
 
-Enter the password for the user (`kali`) when asked for a password (your user ID might be different if it is a custom installation).
+Enter the password for the user (`kali`) when prompted (your user ID might be different if it is a custom installation).
 
-Run one of the commands below depending on whether you want the vulnerable docker images to be pulled or not.
+Run one of the commands below depending on whether you want the vulnerable Docker images to be pulled or not.
 
-#### Install WITHOUT docker vulnerable images
+#### Install WITHOUT Docker vulnerable images
 
 ```zsh
 ansible-playbook -vv -i localhost, -e "{ setup_vuln_docker_images: false }" -e "local_username=$(id -un)" -K main.yml
 ```
 
-#### Install WITH docker vulnerable images
+#### Install WITH Docker vulnerable images
 
 ```zsh
 ansible-playbook -vv -i localhost, -e "{ setup_vuln_docker_images: true }" -e "local_username=$(id -un)" -K main.yml
@@ -71,50 +71,50 @@ kali-tweaks
 
 ---
 
-## Bundled docker vulnerable images
+## Bundled Docker Vulnerable Images
 
-*Docker vulnerable images* are docker containers to running deliverately vulnerable services. The following vulnerable images are installed so that you can practice within your own Kali installation:
+*Docker vulnerable images* are Docker containers running deliberately vulnerable services. The following vulnerable images are installed so that you can practice within your own Kali installation:
 
 - [OWASP Juice Shop](https://owasp.org/www-project-juice-shop/)
 - [OWASP WebGoat](https://owasp.org/www-project-webgoat/)
 
-### Running the vulnerable docker images
+### Running the vulnerable Docker images
 
 #### OWASP Juice Shop
 
 ```zsh
 docker run --rm -d -p 3000:3000 --name juice-shop bkimminich/juice-shop
-# use web browser to go to http://localhost:3000 in Kali host
+# Use a web browser to go to http://localhost:3000 in the Kali host
 ```
 
 #### OWASP WebGoat
 
 ```zsh
 docker run --rm -it -p 127.0.0.1:8080:8080 -p 127.0.0.1:9090:9090 -e TZ=UTC --name webgoat webgoat/webgoat
-# use web browsser to go to http://127.0.0.1:8080/WebGoat in Kali host
+# Use a web browser to go to http://127.0.0.1:8080/WebGoat in the Kali host
 ```
 
-#### DVWA (Damn Vulenerable Web Application)
+#### DVWA (Damn Vulnerable Web Application)
 
 ```zsh
 sudo systemctl start dvwa
-# navigate to http://localhost:42001
-# default creds are admin:password
-# Security Level can be changed in `/etc/dvwa/config/config.inc.php`
+# Navigate to http://localhost:42001
+# Default creds are admin:password
+# Security level can be changed in `/etc/dvwa/config/config.inc.php`
 ```
 
 ---
 
 ## Additional Git Repos
 
-Additional git repos cloned locally at these locations:
+Additional Git repos are cloned locally at the following locations:
 
-- [`/opt/GitTools`](https://github.com/internetwache/GitTools): A repository with 3 tools for pwn'ing websites with .git repositories available
+- [`/opt/GitTools`](https://github.com/internetwache/GitTools): A repository with 3 tools for pwning websites with exposed `.git` directories
 - [`/opt/zphisher`](https://github.com/htr-tech/zphisher): An automated phishing tool with 30+ templates
-- [`/opt/vulhub`](https://github.com/vulhub/vulhub): Pre-Built Vulnerable Environments Based on Docker-Compose
-- [`/opt/privesc-scripts/LinEnum`](https://github.com/rebootuser/LinEnum): Scripted Local Linux Enumeration & Privilege Escalation Checks
+- [`/opt/vulhub`](https://github.com/vulhub/vulhub): Pre-built vulnerable environments based on Docker Compose
+- [`/opt/privesc-scripts/LinEnum`](https://github.com/rebootuser/LinEnum): Scripted local Linux enumeration & privilege escalation checks
 - [`/opt/privesc-scripts/linux-exploit-suggester`](https://github.com/The-Z-Labs/linux-exploit-suggester): Linux privilege escalation auditing tool
-- [`/opt/privesc-scripts/linux-smart-enumeration`](https://github.com/diego-treitos/linux-smart-enumeration): Linux enumeration tool for pentesting and CTFs with verbosity levels Topics
+- [`/opt/privesc-scripts/linux-smart-enumeration`](https://github.com/diego-treitos/linux-smart-enumeration): Linux enumeration tool for pentesting and CTFs with verbosity levels
 - [`/opt/privesc-scripts/PEASS-ng`](https://github.com/carlospolop/PEASS-ng): PEASS - Privilege Escalation Awesome Scripts SUITE (with colors)
 - [`/opt/WEF`](https://github.com/D3Ext/WEF): Wi-Fi Exploitation Framework
 
@@ -134,8 +134,8 @@ Additional git repos cloned locally at these locations:
 - [OWASP Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/latest/)
 - [Payloads All The Things](https://swisskyrepo.github.io/PayloadsAllTheThings/)
 - [GTFOBins](https://gtfobins.github.io/)
-- [CyberChef](https://gchq.github.io/CyberChef/) - Encode/decode data
-- [CrackStation](https://crackstation.net/) - Hash Rainbow List
+- [CyberChef](https://gchq.github.io/CyberChef/) – Encode/decode data
+- [CrackStation](https://crackstation.net/) – Hash rainbow list
 - [Reverse Shell Generator](https://www.revshells.com/)
 - [CI/CD Goat](https://github.com/cider-security-research/cicd-goat)
 - [h4cker](https://github.com/The-Art-of-Hacking/h4cker)
@@ -146,6 +146,6 @@ Additional git repos cloned locally at these locations:
 
 ## Donations
 
-If you think my work helped you in some way saving you time and effort, I am happy to receive any amount of donation. However, the code in this repo is completely free.
+If you think my work helped you in some way and saved you time and effort, I’m happy to receive any amount of donation. However, the code in this repo is completely free.
 
 Bitcoin (BTC): `bc1qzlhpm94vtk2ht67etdutzcy2g5an5v6g36tp0m`
