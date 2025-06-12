@@ -21,7 +21,7 @@ sudo apt update
 sudo apt full-upgrade -y
 ```
 
-### 2. Install git and ansible-core
+### 2. Install git and ansible/ansible-core
 
 ```zsh
 sudo apt update
