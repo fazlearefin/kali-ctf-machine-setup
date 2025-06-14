@@ -23,8 +23,9 @@ system_packages:
   - rlwrap
   - fzf
   - bat
-  - eza  # alternative `ls` command
+  - lsd  # alternative `ls` command
   - zoxide  # smarter `cd` command
+  - firejail  # sandboxing utility
   - burpsuite
   - hashrat
   - name-that-hash
