@@ -4,76 +4,77 @@ local_username: "{{ local_username }}"
 setup_vuln_docker_images: false
 
 system_packages:
-  - amass
   - alacritty
-  - seclists
-  - payloadsallthethings
-  - linux-exploit-suggester
-  - mat2
-  - sshuttle
-  - chisel
-  - bettercap
-  - sslstrip
-  - tree
-  - parallel
-  - meld
-  - gobuster
-  - chromium
-  - nishang
-  - rlwrap
-  - fzf
+  - amass
   - bat
-  - lsd  # alternative `ls` command
-  - zoxide  # smarter `cd` command
-  - firejail  # sandboxing utility
-  - burpsuite
-  - hashrat
-  - name-that-hash
-  - feroxbuster
-  - tig
-  - python3-cachecontrol
-  - python3-poetry
-  - python3-pip
-  - ripgrep
-  - ncat
-  - testssl.sh
-  - httpie
-  - jq
-  - pipx
+  - bettercap
   - btop
-  - duf
-  - trufflehog
-  - strace
-  - python3-pwntools
-  - dconf-cli
-  - libpcap-dev  # package required for naabu
-  - massdns
+  - burpsuite
   - cargo
-  - golang-go
-  - mtr-tiny
-  - oscanner
-  - tnscmd10g
-  - hping3
-  - iperf3
-  - p0f
+  - chisel
+  - chromium
+  - dconf-cli
+  - duf
+  - fd-find  # required by neovim/lazyvim
+  - feroxbuster
+  - firejail  # sandboxing utility
+  - foliate  # ebook reader
+  - fzf
   - git
   - git-extras
-  - mdk4
-  - xterm
+  - gobuster
+  - golang-go
+  - hashrat
   - hcxtools
-  - neovim
-  - luarocks  # required by neovim/lazyvim
-  - fd-find  # required by neovim/lazyvim
-  # - tree-sitter-cli  # required by neovim/lazyvim
-  - ngrep  # grep for network traffic
-  - tcptraceroute  # traceroute implementation using TCP packets
-  - trivy  # Find vulnerabilities, misconfigurations, secrets, SBOM in containers, Kubernetes, code repositories, clouds and more
-  - mitmproxy  # interactive TLS-capable intercepting HTTP proxy
-  - realtek-rtl88xxau-dkms  # Realtek RTL88xxAU driver in DKMS format
-  - foliate             # ebook reader
-  - pcre2-utils         # provides pcre2grep and pcre2test (perl-compatible regex)
+  - hping3
+  - httpie
+  - iperf3
+  - jq
+  - kali-tools-top10  # metapackage https://www.kali.org/tools/kali-meta/#kali-tools-top10
+  - libpcap-dev  # package required for naabu
   - ligolo-ng  # an advanced, yet simple, tunneling/pivoting tool that uses a TUN interface
-  - kali-tools-top10    # metapackage https://www.kali.org/tools/kali-meta/#kali-tools-top10
+  - linux-exploit-suggester
+  - lsd  # alternative `ls` command
+  - luarocks  # required by neovim/lazyvim
+  - massdns
+  - mat2
+  - mdk4
+  - meld
+  - mitmproxy  # interactive TLS-capable intercepting HTTP proxy
+  - mtr-tiny
+  - name-that-hash
+  - ncat
+  - neovim
+  - ngrep  # grep for network traffic
+  - nishang
+  - oscanner
+  - p0f
+  - parallel
+  - payloadsallthethings
+  - pcre2-utils  # provides pcre2grep and pcre2test (perl-compatible regex)
+  - pipx
+  - python3-cachecontrol
+  - python3-pip
+  - python3-poetry
+  - python3-pwntools
+  - realtek-rtl88xxau-dkms  # Realtek RTL88xxAU driver in DKMS format
+  - ripgrep
+  - rlwrap
+  - seclists
+  - sshuttle
+  - sslstrip
+  - strace
+  - tcptraceroute  # traceroute implementation using TCP packets
+  - testssl.sh
+  - tig
+  - tnscmd10g
+  - tree
+  # - tree-sitter-cli  # required by neovim/lazyvim
+  - trivy  # Find vulnerabilities, misconfigurations, secrets, SBOM in containers, Kubernetes, code repositories, clouds and more
+  - trufflehog
+  - xterm
+  - zoxide  # smarter `cd` command
+
 
 problematic_packages:
   - python3-httpx    # this installs `httpx` which interferes with `httpx` from projectdiscovery.io
