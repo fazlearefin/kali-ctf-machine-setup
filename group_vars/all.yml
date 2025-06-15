@@ -146,6 +146,10 @@ vscodium:
     - ms-python.python
     - oderwat.indent-rainbow
     - rangav.vscode-thunder-client
+    - rust-lang.rust-analyzer
+    - golang.Go
+    - redhat.vscode-yaml
+    - timonwong.shellcheck
 
 tmux_plugin_repo: "https://github.com/tmux-plugins/tpm"
 
