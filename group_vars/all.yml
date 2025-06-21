@@ -4,94 +4,94 @@ local_username: "{{ local_username }}"
 setup_vuln_docker_images: false
 
 system_packages:
-  - alacritty
-  - amass
-  - bat
-  - bettercap
-  - btop
-  - burpsuite
-  - cargo
-  - chisel
-  - chromium
-  - dconf-cli
-  - duf
-  - fd-find  # required by neovim/lazyvim
-  - feroxbuster
-  - firejail  # sandboxing utility
-  - foliate  # ebook reader
-  - fzf
-  - git
-  - git-extras
-  - gobuster
-  - golang-go
-  - hashrat
-  - hcxtools
-  - hping3
-  - httpie
-  - iperf3
-  - jq
-  - kali-tools-top10  # metapackage https://www.kali.org/tools/kali-meta/#kali-tools-top10
-  - libpcap-dev  # package required for naabu
-  - ligolo-ng  # an advanced, yet simple, tunneling/pivoting tool that uses a TUN interface
-  - linux-exploit-suggester
-  - lsd  # alternative `ls` command
-  - luarocks  # required by neovim/lazyvim
-  - massdns
-  - mat2
-  - mdk4
-  - meld
-  - mitmproxy  # interactive TLS-capable intercepting HTTP proxy
-  - mtr-tiny
-  - name-that-hash
-  - ncat
-  - neovim
-  - ngrep  # grep for network traffic
-  - nishang
-  - oscanner
-  - p0f
-  - parallel
-  - payloadsallthethings
-  - pcre2-utils  # provides pcre2grep and pcre2test (perl-compatible regex)
-  - pipx
-  - python3-cachecontrol
-  - python3-pip
-  - python3-poetry
-  - python3-pwntools
+  - alacritty  # GPU-accelerated terminal emulator
+  - amass  # In-depth DNS enumeration and attack surface mapping tool
+  - bat  # cat clone with syntax highlighting and Git integration
+  - bettercap  # Powerful, flexible and portable network attack and monitoring tool
+  - btop  # Resource monitor that shows usage and stats for processor, memory, disks, network and processes
+  - burpsuite  # Integrated platform for performing security testing of web applications
+  - cargo  # Rust language package manager and build tool
+  - chisel  # Fast TCP/UDP tunnel, transported over HTTP, secured via SSH
+  - chromium  # Open-source web browser project
+  - dconf-cli  # Command line tool for managing dconf settings
+  - duf  # Disk usage/free utility with a user-friendly interface
+  - fd-find  # Simple, fast and user-friendly alternative to 'find' (required by neovim/lazyvim)
+  - feroxbuster  # Fast, simple, recursive content discovery tool written in Rust
+  - firejail  # Sandboxing utility to restrict the running environment of untrusted applications
+  - foliate  # Simple and modern GTK eBook reader
+  - fzf  # Command-line fuzzy finder
+  - git  # Distributed version control system
+  - git-extras  # GIT utilities -- repo summary, repl, changelog population, author commit percentages and more
+  - gobuster  # Directory/file, DNS and VHost busting tool written in Go
+  - golang-go  # Go programming language compiler and tools
+  - hashrat  # Hashing tool for files and data streams
+  - hcxtools  # Tools for capturing and converting wireless packets
+  - hping3  # Network tool for packet generation and analysis
+  - httpie  # Command line HTTP client, user-friendly cURL replacement
+  - iperf3  # Tool for active measurements of the maximum achievable bandwidth on IP networks
+  - jq  # Command-line JSON processor
+  - kali-tools-top10  # Metapackage for Kali's top 10 security tools
+  - libpcap-dev  # Development library for packet capture (required for naabu)
+  - ligolo-ng  # Advanced tunneling/pivoting tool using a TUN interface
+  - linux-exploit-suggester  # Linux privilege escalation auditing tool
+  - lsd  # Modern replacement for 'ls' command
+  - luarocks  # Package manager for Lua modules (required by neovim/lazyvim)
+  - massdns  # High-performance DNS stub resolver for bulk lookups and reconnaissance
+  - mat2  # Metadata removal tool for various file formats
+  - mdk4  # Wi-Fi testing tool for security and robustness
+  - meld  # Visual diff and merge tool
+  - mitmproxy  # Interactive TLS-capable intercepting HTTP proxy
+  - mtr-tiny  # Network diagnostic tool combining traceroute and ping
+  - name-that-hash  # CLI tool to identify hash types
+  - ncat  # Feature-packed networking utility which reads and writes data across networks
+  - neovim  # Hyperextensible Vim-based text editor
+  - ngrep  # Grep applied to network traffic
+  - nishang  # PowerShell for penetration testing and offensive security
+  - oscanner  # Oracle assessment framework
+  - p0f  # Passive OS fingerprinting tool
+  - parallel  # Build and execute shell command lines from standard input in parallel
+  - payloadsallthethings  # Collection of useful payloads and bypasses for Web Application Security
+  - pcre2-utils  # Provides pcre2grep and pcre2test (perl-compatible regex)
+  - pipx  # Install and run Python applications in isolated environments
+  - python3-cachecontrol  # HTTP cache for Python requests
+  - python3-pip  # Python package installer
+  - python3-poetry  # Python dependency management and packaging tool
+  - python3-pwntools  # CTF framework and exploit development library
   - realtek-rtl88xxau-dkms  # Realtek RTL88xxAU driver in DKMS format
-  - ripgrep
-  - rlwrap
-  - seclists
-  - sshuttle
-  - sslstrip
-  - strace
-  - tcptraceroute  # traceroute implementation using TCP packets
-  - testssl.sh
-  - tig
-  - tnscmd10g
-  - tree
-  # - tree-sitter-cli  # required by neovim/lazyvim
+  - ripgrep  # Recursively searches directories for a regex pattern
+  - rlwrap  # Readline wrapper for command line interfaces
+  - seclists  # Collection of multiple types of lists used during security assessments
+  - sshuttle  # Transparent proxy server for VPN-like functionality
+  - sslstrip  # Tool for stripping SSL/TLS from HTTP traffic
+  - strace  # Diagnostic, debugging and instructional userspace tracer
+  - tcptraceroute  # Traceroute implementation using TCP packets
+  - testssl.sh  # Testing TLS/SSL encryption on remote servers
+  - tig  # Text-mode interface for git
+  - tnscmd10g  # Oracle TNS command-line tool
+  - tree  # Recursive directory listing command
+  # - tree-sitter-cli  # CLI for Tree-sitter, a parser generator tool and incremental parsing library (required by neovim/lazyvim)
   - trivy  # Find vulnerabilities, misconfigurations, secrets, SBOM in containers, Kubernetes, code repositories, clouds and more
-  - trufflehog
-  - xterm
-  - zoxide  # smarter `cd` command
+  - trufflehog  # Searches through git repositories for high entropy strings and secrets
+  - xterm  # Standard terminal emulator for the X Window System
+  - zoxide  # Smarter 'cd' command
 
 
 problematic_packages:
   - python3-httpx    # this installs `httpx` which interferes with `httpx` from projectdiscovery.io
 
 pipx_packages:
-  - ruff  # python linter and formatter
-  - chepy  # a python lib/cli equivalent of the awesome CyberChef tool
-  - git+https://github.com/Pennyw0rth/NetExec  # network pentest tool; replacement for discontinued CrackMapExec
-  - git+https://github.com/Tib3rius/AutoRecon.git  # AutoRecon is a multi-threaded network reconnaissance tool which performs automated enumeration of services
+  - ruff  # Python linter and formatter
+  - chepy  # Python lib/cli equivalent of the awesome CyberChef tool
+  - git+https://github.com/Pennyw0rth/NetExec  # Network pentest tool; replacement for discontinued CrackMapExec
+  - git+https://github.com/Tib3rius/AutoRecon.git  # Multi-threaded network reconnaissance tool for automated enumeration
 
 cargo_packages:
-  - xh  # drop-in replacement for http/httpie
-  - tlrc  # official tldr rust client
+  - xh  # Drop-in replacement for http/httpie
+  - tlrc  # Official tldr rust client
 
 golang_tools:
-  - github.com/jesseduffield/lazygit@latest  # simple terminal UI for git commands
-  - github.com/wagoodman/dive@latest  # tool for exploring each layer in a docker image
+  - github.com/jesseduffield/lazygit@latest  # Simple terminal UI for git commands
+  - github.com/wagoodman/dive@latest  # Tool for exploring each layer in a docker image
 
 # nerd fonts from https://github.com/ryanoasis/nerd-fonts
 nerd_fonts_version: v3.4.0  # TODO: bump up version number as newer versions are made avaialbe from source git repo https://github.com/ryanoasis/nerd-fonts/releases/
@@ -122,15 +122,15 @@ nerd_fonts:
   - "{{ nerd_fonts_base_url }}/DroidSansMono/DroidSansMNerdFontMono-Regular.otf"
 
 projectdiscovery_tools:
-  - pdtm
-  - nuclei
-  - naabu
-  - subfinder
-  - httpx
-  - katana
-  - dnsx
-  - tlsx
-  - simplehttpserver
+  - pdtm  # ProjectDiscovery Tool Manager - manages installation and updates of ProjectDiscovery tools
+  - nuclei  # Fast and customizable vulnerability scanner based on templates
+  - naabu  # Fast port scanner for network reconnaissance
+  - subfinder  # Subdomain discovery tool
+  - httpx  # Fast and multi-purpose HTTP toolkit for probing and reconnaissance
+  - katana  # Web crawling and spidering framework
+  - dnsx  # Fast and flexible DNS toolkit
+  - tlsx  # Fast and configurable TLS/SSL data collection tool
+  - simplehttpserver  # Lightweight HTTP server for quick file sharing and testing
 
 projectdiscovery_tool_manager_url: "https://api.github.com/repos/projectdiscovery/pdtm/releases/latest"
 
@@ -148,7 +148,6 @@ vscodium:
     - rangav.vscode-thunder-client
     - rust-lang.rust-analyzer
     - golang.Go
-    - redhat.vscode-yaml
     - timonwong.shellcheck
 
 tmux_plugin_repo: "https://github.com/tmux-plugins/tpm"
